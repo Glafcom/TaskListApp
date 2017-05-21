@@ -1,0 +1,128 @@
+﻿@using TaskListApp.Domain.Enums;
+@using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
+@model ToDoTaskIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="active-tasks-container container">
+
+    <div>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#assignedTasks" aria-controls="assignedTasks" role="tab" data-toggle="tab">Assigned tasks</a></li>
+            <li role="presentation"><a href="#ownTasks" aria-controls="ownTasks" role="tab" data-toggle="tab">Own tasks</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="assignedTasks">
+                <div class="assigned-tasks-container">
+
+                    @if (Model.ActualAssignedTasks != null && Model.ActualAssignedTasks.Count() > 0)
+                    {
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Author</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var task in Model.ActualAssignedTasks)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="chkTaskComplete" data-task-id="@task.Id" checked="@(task.Status == ToDoTaskStatus.Done)" />
+                                        </td>
+                                        <td>@task.Caption</td>
+                                        <td>@(task.Author != null ? $"{task.Author.Name} {task.Author.Surname}" : string.Empty)</td>
+                                        <td>
+                                            @if (task.Status != ToDoTaskStatus.Done && task.Status != ToDoTaskStatus.Rejected)
+                                            {
+                                                if (task.Status == ToDoTaskStatus.InProgress)
+                                                {
+                                                    <a href="#" class="btn btn-info task-pause-btn" data-task-id="@task.Id">Pause</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#" class="btn btn-info task-start-btn" data-task-id="@task.Id">Start</a>
+                                                }
+                                            }
+                                            
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Task", "Tasks", new { id = task.Id})" class="btn btn-default">Details</a>
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("RejectTask", "Tasks", new { id = task.Id})" class="btn btn-danger">Reject</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>There are no active tasks</p>
+                    }
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="ownTasks">
+                <div class="own-tasks-container">
+
+                    @if (Model.ActualOwnTasks != null && Model.ActualOwnTasks.Count() > 0)
+                    {
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Name</th>
+                                    <th>Assignee</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var task in Model.ActualOwnTasks)
+                                {
+                                    <tr>
+                                        <td>@task.Status.ToString()</td>
+                                        <td>@task.Caption</td>
+                                        <td>@(task.Assignee != null ? $"{task.Assignee.Name} {task.Assignee.Surname}" : string.Empty)</td>
+                                        <td>
+                                            <a href="@Url.Action("Task", "Tasks", new { id = task.Id})" class="btn btn-default">Details</a>
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", "Tasks", new { id = task.Id})" class="btn btn-default">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("RejectTask", "Tasks", new { id = task.Id})" class="btn btn-danger">Reject</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>There are no active tasks</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
