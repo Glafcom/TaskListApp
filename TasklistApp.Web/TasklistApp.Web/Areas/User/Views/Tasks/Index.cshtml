@@ -88,8 +88,7 @@
                                     <th>Status</th>
                                     <th>Name</th>
                                     <th>Assignee</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th></th>                                    
                                     <th></th>
                                 </tr>
                             </thead>
@@ -102,10 +101,7 @@
                                         <td>@(task.Assignee != null ? $"{task.Assignee.Name} {task.Assignee.Surname}" : string.Empty)</td>
                                         <td>
                                             <a href="@Url.Action("Task", "Tasks", new { id = task.Id})" class="btn btn-default">Details</a>
-                                        </td>
-                                        <td>
-                                            <a href="@Url.Action("Edit", "Tasks", new { id = task.Id})" class="btn btn-default">Edit</a>
-                                        </td>
+                                        </td>                                        
                                         <td>
                                             <a href="@Url.Action("RejectTask", "Tasks", new { id = task.Id})" class="btn btn-danger">Reject</a>
                                         </td>

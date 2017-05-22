@@ -1,0 +1,79 @@
+﻿@using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
+@model ToDoTaskBlankViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Task</h2>
+
+<div class="create-task-container">
+    @using (Html.BeginForm("Create", "Tasks", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+
+        @Html.HiddenFor(m => m.Id)
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Caption)
+                    @Html.TextBoxFor(m => m.Caption, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Caption)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.StartDate)
+                    @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.StartDate)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FinishDate)
+                    @Html.TextBoxFor(m => m.FinishDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FinishDate)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Duration)
+                    @Html.TextBoxFor(m => m.Duration, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Duration)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.AssigneeId)
+                    @Html.DropDownListFor(m => m.AssigneeId, new SelectList(ViewBag.DetailsList, "Value", "Text"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.AssigneeId)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Description)
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+    }
+</div>
+

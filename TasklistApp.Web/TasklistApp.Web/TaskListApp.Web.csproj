@@ -138,7 +138,7 @@
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskChangeStatusViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskDetailViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskIndexViewModel.cs" />
-    <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTasksVewModel.cs" />
+    <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTasksViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskViewModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -161,6 +161,8 @@
     <Content Include="Areas\User\Views\web.config" />
     <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\User\Views\Tasks\Index.cshtml" />
+    <Content Include="Areas\User\Views\Tasks\Task.cshtml" />
+    <Content Include="Areas\User\Views\Tasks\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -1,0 +1,62 @@
+﻿@using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
+@model ToDoTaskDetailViewModel
+
+@{
+    ViewBag.Title = "Task";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Task</h2>
+
+<div class="task-detail-container container">
+    <div class="row">
+        <div class="col-md-4">Name:</div>
+        <div class="col-md-8">@Model.Caption</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">Status:</div>
+        <div class="col-md-8">@Model.Status</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">Created At:</div>
+        <div class="col-md-8">@Model.CreateDate</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">Created By:</div>
+        <div class="col-md-8">@(Model.Author != null ? $"{Model.Author.Name} {Model.Author.Surname}" : string.Empty)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">Assigned To:</div>
+        <div class="col-md-8">@(Model.Assignee != null ? $"{Model.Assignee.Name} {Model.Assignee.Surname}" : string.Empty)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">Start Date:</div>
+        <div class="col-md-8">@Model.StartDate</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">Finish Date:</div>
+        <div class="col-md-8">@Model.FinishDate</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">Duration:</div>
+        <div class="col-md-8">@Model.Duration</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">Description:</div>
+        <div class="col-md-8">@Model.Description</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">Information:</div>
+        <div class="col-md-8">@Model.Information</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="@Url.Action("Edit", "Tasks", new { id = Model.Id } )" class="btn btn-default">Edit</a>
+        </div>
+        <div class="col-md-6">
+            <a href="@Url.Action("Index", "Tasks")" class="btn btn-default">Back</a>
+        </div>
+    </div>
+</div>
+

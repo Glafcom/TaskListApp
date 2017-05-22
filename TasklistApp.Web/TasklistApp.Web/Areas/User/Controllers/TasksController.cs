@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TasklistApp.Web.Areas.User.Models.ToDoTasksViewModels;
 using TaskListApp.Contracts.BLLContracts.Domains;
 using TaskListApp.Domain.Enums;
 using TaskListApp.Domain.Models;
+using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
 
 namespace TaskListApp.Web.Areas.User.Controllers
 {

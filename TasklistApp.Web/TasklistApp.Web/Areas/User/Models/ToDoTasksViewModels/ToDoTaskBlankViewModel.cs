@@ -8,7 +8,8 @@ namespace TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels
 {
     public class ToDoTaskBlankViewModel
     {
-        public ToDoTaskStatus Status { get; set; }
+        public Guid Id { get; set; }
+        public ToDoTaskStatus? Status { get; set; }
         public string Caption { get; set; }
         public string Description { get; set; }
         public string Information { get; set; }
