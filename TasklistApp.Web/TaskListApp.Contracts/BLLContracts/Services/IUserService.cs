@@ -15,6 +15,8 @@ namespace TaskListApp.Contracts.BLLContracts.Services
         void BlockUser(Guid userId);
         void UnblockUser(Guid userId);
         bool DeleteUser(Guid userId);
+
+        IEnumerable<User> GetUsersByDepartment(Guid departmentId);
         
     }
 }

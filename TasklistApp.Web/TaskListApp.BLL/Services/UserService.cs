@@ -81,6 +81,11 @@ namespace TaskListApp.BLL.Services
             return true;
         }
 
+        public IEnumerable<User> GetUsersByDepartment(Guid departmentId)
+        {
+            return GetItems().Where(u => u.DepartmentId == departmentId);
+        }
+
         private void ChangeUserStatus(Guid userId, bool isBlocked)
         {
             var user = _itemRepository.GetByID(userId);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace TasklistApp.Web.Areas.Admin.Models.UsersViewModels
+namespace TaskListApp.Web.Areas.Admin.Models.UsersViewModels
 {
     public class UserViewModel
     {

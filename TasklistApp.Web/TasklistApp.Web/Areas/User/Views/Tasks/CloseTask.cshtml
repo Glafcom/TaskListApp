@@ -1,0 +1,31 @@
+﻿@using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
+@model ToDoTaskChangeStatusViewModel
+
+@{
+    ViewBag.Title = "CloseTask";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Close Task</h2>
+
+<div class="reject-task-container">
+    @using (Html.BeginForm("ChangeTaskStatus", "Tasks", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Status)
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Information)
+                    @Html.TextAreaFor(m => m.Information, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Information)
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="@Url.Action("Index", "Tasks")" class="btn btn-default">Back</a>
+    }
+</div>
+

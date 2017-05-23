@@ -116,5 +116,11 @@ namespace TaskListApp.Web.Areas.User.Controllers
         {
             _userDomain.StartToDoTaskExecuting(id);
         }
+
+        [HttpPost]
+        public JsonResult GetUsersList(Guid departmentId)
+        {
+            var usersList = _userDomain.GetPersonalByDepartment(departmentId);
+        }
     }
 }

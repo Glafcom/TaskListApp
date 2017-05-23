@@ -1,0 +1,30 @@
+﻿@using TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels;
+@model DepartmentBlankViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Department</h2>
+
+<div class="create-department-container container">
+    @using (Html.BeginForm("Create", "Departments", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.Id)
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+            </div>
+        </div>
+        
+
+        <button type="submit" class="btn btn-primary">Create</button>
+    }
+</div>
+

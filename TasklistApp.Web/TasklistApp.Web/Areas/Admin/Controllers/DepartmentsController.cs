@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TasklistApp.Web.Areas.Admin.Models.DepartmentsViewModels;
 using TaskListApp.Contracts.BLLContracts.Domains;
 using TaskListApp.Domain.Filters;
 using TaskListApp.Domain.Models;
+using TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels;
 
 namespace TasklistApp.Web.Areas.Admin.Controllers
 {

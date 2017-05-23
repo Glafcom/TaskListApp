@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskListApp.Domain.Models;
+using TaskListApp.Domain.Models.Identity;
 
 namespace TaskListApp.Contracts.BLLContracts.Domains
 {
@@ -24,5 +25,7 @@ namespace TaskListApp.Contracts.BLLContracts.Domains
         void CompliteToDoTask(Guid toDoTaskId, string info);
         void StopToDoTaskExecuting(Guid toDoTaskId);
         void StartToDoTaskExecuting(Guid toDoTaskId);
+
+        IEnumerable<User> GetPersonalByDepartment(Guid departmentId);
     }
 }

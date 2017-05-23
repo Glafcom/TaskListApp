@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using TaskListApp.Domain.Enums;
 
-namespace Areas.User.Models.ToDoTasksViewModels
+namespace TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels
 {
     public class ToDoTaskChangeStatusViewModel
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using TaskListApp.Domain.Filters;
 
-namespace TasklistApp.Web.Areas.Admin.Models.DepartmentsViewModels
+namespace TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels
 {
     public class DepartmentsViewModel
     {

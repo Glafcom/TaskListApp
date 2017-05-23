@@ -1,0 +1,50 @@
+﻿@using TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels;
+@model DepartmentsViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Departments</h2>
+
+<div class="departments-container container">
+    @if (Model.Departments != null && Model.Departments.Count() > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Head</th>
+                    <th>Personal Count</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var department in Model.Departments)
+                {
+                    <tr>
+                        <td>@department.Name</td>
+                        <td>@(department.Head != null ? $"{department.Head.Name} {department.Head.Surname}" : string.Empty)</td>
+                        <td>@department.PersonalCount</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Departments", new { id = department.Id })" class="btn btn-default">Edit</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Delete", "Departments", new { id = department.Id })" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>There are no departments</p>
+    }
+    
+    <a href="@Url.Action("Create","Departments")" class="btn btn-default">Create</a>
+
+</div>
+

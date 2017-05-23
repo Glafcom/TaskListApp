@@ -13,10 +13,12 @@ namespace TaskListApp.BLL.Domains
     public class UserDomain : User, IUserDomain
     {
         protected readonly IToDoTaskService _toDoTaskService;
+        protected readonly IUserService _userService;
 
-        public UserDomain(IToDoTaskService toDoTaskService)
+        public UserDomain(IToDoTaskService toDoTaskService, IUserService userService)
         {
             _toDoTaskService = toDoTaskService;
+            _userService = userService;
         }
 
         #region [ ToDoTasks Methods ]
@@ -91,5 +93,14 @@ namespace TaskListApp.BLL.Domains
         }
 
         #endregion // [ ToDoTasks Methods ]
+
+        #region [ Users Methods ]
+
+        public IEnumerable<User> GetPersonalByDepartment(Guid departmentId)
+        {
+            return _userService.GetUsersByDepartment(departmentId);
+        }
+
+        #endregion // [ Users Methods ]
     }
 }

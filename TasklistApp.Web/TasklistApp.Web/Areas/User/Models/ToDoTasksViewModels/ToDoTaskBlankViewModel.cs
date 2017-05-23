@@ -16,13 +16,8 @@ namespace TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels
         public TimeSpan Duration { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? FinishDate { get; set; }
-        public Guid AssigneeId { get; set; }
-        public AssigneeViewModel Assignee { get; set; }
+        public Guid? DepartmentId { get; set; }
+        public Guid? AssigneeId { get; set; }        
     }
-
-    public class AssigneeViewModel
-    {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-    }
+    
 }
