@@ -44,10 +44,11 @@ namespace TasklistApp.Web.Areas.Admin.Controllers
             _adminDomain.UnblockUser(userId);
         }
 
-        [HttpPost]
-        public void DeleteUser(Guid userId)
+        [HttpGet]
+        public ActionResult DeleteUser(Guid userId)
         {
             _adminDomain.DeleteUser(userId);
+            return RedirectToAction("Index");
         }
 
         public void ChangeUserRole(Guid userId, RoleType role)

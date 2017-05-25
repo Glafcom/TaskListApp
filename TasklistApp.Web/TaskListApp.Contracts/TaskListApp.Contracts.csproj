@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="BLLContracts\Domains\IAdminDomain.cs" />
     <Compile Include="BLLContracts\Domains\IUserDomain.cs" />
+    <Compile Include="BLLContracts\Services\IAccountService.cs" />
     <Compile Include="BLLContracts\Services\IBaseService.cs" />
     <Compile Include="BLLContracts\Services\IDepartmentService.cs" />
     <Compile Include="BLLContracts\Services\IToDoTaskService.cs" />
@@ -98,6 +99,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\TaskListApp.Common\TaskListApp.Common.csproj">
+      <Project>{1BF79055-1230-4DE7-97A0-B70A008E2790}</Project>
+      <Name>TaskListApp.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskListApp.Domain\TaskListApp.Domain.csproj">
       <Project>{C13FB6F1-BE7F-44BE-9B4A-C736C15EABE7}</Project>
       <Name>TaskListApp.Domain</Name>
