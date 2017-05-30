@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ using System.Threading.Tasks;
 using TaskListApp.Common.Models;
 using TaskListApp.Contracts.BLLContracts.Services;
 using TaskListApp.Contracts.DALContracts.Identity;
+using TaskListApp.Contracts.DtoModels;
+using TaskListApp.Domain.Models.Identity;
 
 namespace TaskListApp.BLL.Services {
     public class AccountService : IAccountService {
@@ -20,7 +23,7 @@ namespace TaskListApp.BLL.Services {
             _signInManager = signInManager;
         }
 
-        public async Task<OperationDetails> Create(User user) {
+        public async Task<OperationDetails> Create(UserDto userDto) {
 
             User user = await _userManager.FindByNameAsync(userDto.UserName);
 
@@ -44,7 +47,7 @@ namespace TaskListApp.BLL.Services {
         }
 
 
-        public async Task<ClaimsIdentity> Authenticate(User user) {
+        public async Task<ClaimsIdentity> Authenticate(UserDto userDto) {
             ClaimsIdentity claim = null;
             User user = await _userManager.FindAsync(userDto.UserName, userDto.Password);
 

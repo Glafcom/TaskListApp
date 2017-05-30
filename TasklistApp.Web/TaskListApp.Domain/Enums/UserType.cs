@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskListApp.Domain.Enums
 {
-    public enum RoleType
+    public enum UserType
     {
         Admin,
         Boss,

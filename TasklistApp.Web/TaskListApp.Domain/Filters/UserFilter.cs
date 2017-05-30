@@ -13,7 +13,7 @@ namespace TaskListApp.Domain.Filters
         public string Name { get; set; }
         public string Surname { get; set; }
         public Guid? Department { get; set; }
-        public RoleType? Role { get; set; }
+        public UserType? Role { get; set; }
         public UserStatus? Status { get; set; }
     }
 }

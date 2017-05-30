@@ -23,10 +23,10 @@ namespace TaskListApp.DAL.Migrations
         {
             context.Roles.AddOrUpdate(
                 r => r.Name,
-                new Role { Name = RoleType.Admin.ToString() },
-                new Role { Name = RoleType.Boss.ToString() },
-                new Role { Name = RoleType.Head.ToString() },
-                new Role { Name = RoleType.Employee.ToString() }
+                new Role { Name = UserType.Admin.ToString() },
+                new Role { Name = UserType.Boss.ToString() },
+                new Role { Name = UserType.Head.ToString() },
+                new Role { Name = UserType.Employee.ToString() }
 
              );
 
@@ -44,7 +44,7 @@ namespace TaskListApp.DAL.Migrations
                 };
 
                 userManager.Create(admin, "admin123");
-                userManager.AddToRole(admin.Id, RoleType.Admin.ToString());
+                userManager.AddToRole(admin.Id, UserType.Admin.ToString());
             }
 
             context.SaveChanges();

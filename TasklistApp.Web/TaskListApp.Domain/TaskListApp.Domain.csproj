@@ -85,7 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\RoleType.cs" />
+    <Compile Include="Enums\UserType.cs" />
     <Compile Include="Enums\ToDoTaskStatus.cs" />
     <Compile Include="Enums\UserStatus.cs" />
     <Compile Include="Filters\DepartmentFilter.cs" />

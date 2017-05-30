@@ -51,7 +51,7 @@ namespace TasklistApp.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public void ChangeUserRole(Guid userId, RoleType role)
+        public void ChangeUserRole(Guid userId, UserType role)
         {
             _adminDomain.ChangeUserRole(userId, role);
         }

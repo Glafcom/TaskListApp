@@ -40,7 +40,7 @@ namespace TaskListApp.BLL.Domains
             _userService.UnblockUser(userId);
         }
 
-        public void ChangeUserRole(Guid userId, RoleType role)
+        public void ChangeUserRole(Guid userId, UserType role)
         {
             _userService.SetRoleToUser(userId, role.ToString());
         }

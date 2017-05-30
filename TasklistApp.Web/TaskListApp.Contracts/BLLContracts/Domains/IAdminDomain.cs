@@ -17,7 +17,7 @@ namespace TaskListApp.Contracts.BLLContracts.Domains
         IEnumerable<User> GetUsersByFilter(UserFilter filter);
         void BlockUser(Guid userId);
         void UnblockUser(Guid userId);
-        void ChangeUserRole(Guid userId, RoleType role);
+        void ChangeUserRole(Guid userId, UserType role);
         void DeleteUser(Guid userId);
 
 
