@@ -292,8 +292,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +318,10 @@
     <ProjectReference Include="..\TaskListApp.Domain\TaskListApp.Domain.csproj">
       <Project>{C13FB6F1-BE7F-44BE-9B4A-C736C15EABE7}</Project>
       <Name>TaskListApp.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskListApp.Infrastructure\TaskListApp.Infrastructure.csproj">
+      <Project>{ABE642D1-DDFD-48B9-8AEA-4C718B425C71}</Project>
+      <Name>TaskListApp.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
