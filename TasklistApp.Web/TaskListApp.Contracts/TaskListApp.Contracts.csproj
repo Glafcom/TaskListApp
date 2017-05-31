@@ -100,8 +100,6 @@
     <Compile Include="DALContracts\Identity\IApplicationUserManager.cs" />
     <Compile Include="DALContracts\IGenericRepository.cs" />
     <Compile Include="DtoModels\UserDto.cs" />
-    <Compile Include="MapperProfiles\BLLMapperProfile.cs" />
-    <Compile Include="MapperProfiles\WebMapperProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
