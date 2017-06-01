@@ -1,10 +1,13 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using TaskListApp.BLL.Domains;
 using TaskListApp.BLL.Identity;
 using TaskListApp.BLL.Services;
@@ -30,6 +33,8 @@ namespace TaskListApp.Infrastructure.ContainerExtensions {
             Container.RegisterType<IDepartmentService, DepartmentService>(new PerRequestLifetimeManager());
             Container.RegisterType<IToDoTaskService, ToDoTaskService>(new PerRequestLifetimeManager());
             Container.RegisterType<IUserService, UserService>(new PerRequestLifetimeManager());
+            Container.RegisterType<IUserStore<User, Guid>, ApplicationUserStore>(new PerRequestLifetimeManager());
+            Container.RegisterType<IAuthenticationManager>(new PerRequestLifetimeManager(), new InjectionFactory( o => System.Web.HttpContext.Current.GetOwinContext().Authentication ));
 
             #endregion //[ Services ]
 

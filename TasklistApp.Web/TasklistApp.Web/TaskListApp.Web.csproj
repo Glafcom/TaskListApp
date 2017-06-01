@@ -201,6 +201,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Areas\Account\Models\AccountViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentsViewModels\DepartmentBlankViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentsViewModels\DepartmentsViewModel.cs" />
@@ -234,6 +236,7 @@
     <Compile Include="Hubs\TaskListHub.cs" />
     <Compile Include="Mapping\WebMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -267,6 +270,7 @@
     <Content Include="Areas\Account\Views\Account\Register.cshtml" />
     <Content Include="Areas\Account\Views\Account\ResetPassword.cshtml" />
     <Content Include="Areas\Account\Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -314,6 +318,10 @@
     <ProjectReference Include="..\TaskListApp.Contracts\TaskListApp.Contracts.csproj">
       <Project>{822B7E25-3D30-4FBA-A881-03E935CA52D0}</Project>
       <Name>TaskListApp.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskListApp.DAL\TaskListApp.DAL.csproj">
+      <Project>{EF20C840-BB51-43C9-8DB2-121FA6A4C6BE}</Project>
+      <Name>TaskListApp.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\TaskListApp.Domain\TaskListApp.Domain.csproj">
       <Project>{C13FB6F1-BE7F-44BE-9B4A-C736C15EABE7}</Project>

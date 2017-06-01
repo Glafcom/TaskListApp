@@ -55,7 +55,7 @@ namespace TaskListApp.Web.Areas.Account.Controllers
 
                 if (claim != null) {
                     var result = await _accountService.SignIn(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
-
+                                        
                     if (result == SignInStatus.Success)
                         return RedirectToLocal(returnUrl);
                 }
@@ -82,7 +82,9 @@ namespace TaskListApp.Web.Areas.Account.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model) {
             if (ModelState.IsValid) {
-                OperationDetails result = await _accountService.Create(Mapper.Map<UserDto>(model));
+                var modelDto = Mapper.Map<UserDto>(model);
+                modelDto.Role = UserType.Employee.ToString();
+                OperationDetails result = await _accountService.Create(modelDto);
                 if (result.Succeeded)
                     return RedirectToAction("Login");
                 else
@@ -201,7 +203,7 @@ namespace TaskListApp.Web.Areas.Account.Controllers
             if (Url.IsLocalUrl(returnUrl)) {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { area = ""});
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult {

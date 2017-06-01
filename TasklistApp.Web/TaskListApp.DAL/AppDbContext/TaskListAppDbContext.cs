@@ -16,6 +16,10 @@ namespace TaskListApp.DAL.AppDbContext
             : base("TaskListAppDbConnection")
         { }
 
+        public TaskListAppDbContext(string connectionString) 
+            :base(connectionString)
+        { }
+
         public DbSet<Department> Departments { get; set; }
         public DbSet<ToDoTask> ToDoTasks { get; set; }
 
@@ -26,6 +30,16 @@ namespace TaskListApp.DAL.AppDbContext
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ToDoTask>()
+                .HasRequired(t => t.Author)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ToDoTask>()
+                .HasRequired(t => t.Assignee)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
             base.OnModelCreating(modelBuilder);
         }
     }

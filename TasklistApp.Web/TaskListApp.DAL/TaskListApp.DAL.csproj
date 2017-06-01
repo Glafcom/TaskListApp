@@ -58,6 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext\TaskListAppDbContext.cs" />
+    <Compile Include="Migrations\201706011332133_Initial_Create.cs" />
+    <Compile Include="Migrations\201706011332133_Initial_Create.Designer.cs">
+      <DependentUpon>201706011332133_Initial_Create.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
@@ -76,7 +80,11 @@
       <Name>TaskListApp.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706011332133_Initial_Create.resx">
+      <DependentUpon>201706011332133_Initial_Create.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

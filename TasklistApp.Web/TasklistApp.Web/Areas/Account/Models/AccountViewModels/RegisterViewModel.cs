@@ -35,8 +35,5 @@ namespace TaskListApp.Web.Areas.Account.Models.AccountViewModels {
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
-        [Display(Name = "User type")]
-        public UserType? UserType { get; set; }
     }
 }

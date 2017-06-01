@@ -25,6 +25,10 @@ namespace TasklistApp.Web.Mapping {
             CreateMap<DepartmentBlankViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<Department, DepartmentViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<Department, DepartmentBlankViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<IndexDepartmentViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<Department, IndexDepartmentViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<UserDepartmentViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<Department, UserDepartmentViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
 
             #endregion // [ Department models ]
 
@@ -32,6 +36,12 @@ namespace TasklistApp.Web.Mapping {
 
             CreateMap<UserViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<User, UserViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<EmployeeViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<User, EmployeeViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<HeadViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<User, HeadViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<ToDoTaskUserViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<User, ToDoTaskUserViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
 
             #endregion //[ Users models ]
 
@@ -58,6 +68,8 @@ namespace TasklistApp.Web.Mapping {
 
             CreateMap<RegisterViewModel, UserDto>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<LoginViewModel, UserDto>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<UserDto, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<User, UserDto>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
 
             #endregion //[ Account models ]
 

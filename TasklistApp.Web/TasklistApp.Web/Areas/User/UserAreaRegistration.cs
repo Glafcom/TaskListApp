@@ -17,7 +17,8 @@ namespace TaskListApp.Web.Areas.User
             context.MapRoute(
                 "User_default",
                 "User/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "Tasks", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "TaskListApp.Web.Areas.User.Controllers" }
             );
         }
     }

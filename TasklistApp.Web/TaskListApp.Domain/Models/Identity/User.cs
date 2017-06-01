@@ -2,6 +2,8 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -11,8 +13,12 @@ using TaskListApp.Domain.Enums;
 namespace TaskListApp.Domain.Models.Identity
 {
     public class User : IdentityUser<Guid, UserLogin, UserRole, UserClaim>
-    {
-        public override Guid Id { get; set; }
+    {   
+        public User() 
+        {
+            Id = Guid.NewGuid();
+        }
+
         public override string UserName { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

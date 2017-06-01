@@ -11,6 +11,7 @@ using TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels;
 
 namespace TasklistApp.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DepartmentsController : Controller
     {
         protected IAdminDomain _adminDomain;

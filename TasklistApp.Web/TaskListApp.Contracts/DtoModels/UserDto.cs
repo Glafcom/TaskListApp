@@ -12,7 +12,7 @@ namespace TaskListApp.Contracts.DtoModels {
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
-        public Guid? Department { get; set; }
+        public Guid? DepartmentId { get; set; }
         public string Password { get; set; }
         public bool? IsBlocked { get; set; }
     }

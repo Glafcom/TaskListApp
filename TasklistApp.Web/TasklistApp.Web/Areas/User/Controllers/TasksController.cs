@@ -1,5 +1,4 @@
-﻿using Areas.User.Models.ToDoTasksViewModels;
-using AutoMapper;
+﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,7 @@ using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
 
 namespace TaskListApp.Web.Areas.User.Controllers
 {
+    [Authorize(Roles = "Boss,Head,Employee")]
     public class TasksController : Controller
     {
         protected readonly IUserDomain _userDomain;
@@ -117,10 +117,10 @@ namespace TaskListApp.Web.Areas.User.Controllers
             _userDomain.StartToDoTaskExecuting(id);
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public JsonResult GetUsersList(Guid departmentId)
         {
             var usersList = _userDomain.GetPersonalByDepartment(departmentId);
-        }
+        }*/
     }
 }
