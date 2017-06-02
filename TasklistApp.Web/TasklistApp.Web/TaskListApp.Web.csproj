@@ -221,6 +221,7 @@
     <Compile Include="Areas\Admin\Models\DepartmentsViewModels\DepartmentViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UsersViewModels\UsersViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UsersViewModels\UserViewModel.cs" />
+    <Compile Include="Areas\User\Controllers\HomeController.cs" />
     <Compile Include="Areas\User\Controllers\TasksController.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskBlankViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskChangeStatusViewModel.cs" />
@@ -271,6 +272,8 @@
     <Content Include="Areas\Account\Views\Account\ResetPassword.cshtml" />
     <Content Include="Areas\Account\Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_LoginPartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -285,7 +288,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -300,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\User\Views\Home\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

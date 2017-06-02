@@ -58,9 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext\TaskListAppDbContext.cs" />
-    <Compile Include="Migrations\201706011332133_Initial_Create.cs" />
-    <Compile Include="Migrations\201706011332133_Initial_Create.Designer.cs">
-      <DependentUpon>201706011332133_Initial_Create.cs</DependentUpon>
+    <Compile Include="Migrations\201706011814466_Initial_Create.cs" />
+    <Compile Include="Migrations\201706011814466_Initial_Create.Designer.cs">
+      <DependentUpon>201706011814466_Initial_Create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706011827199_CorrectedDepartmentProperties.cs" />
+    <Compile Include="Migrations\201706011827199_CorrectedDepartmentProperties.Designer.cs">
+      <DependentUpon>201706011827199_CorrectedDepartmentProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +85,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706011332133_Initial_Create.resx">
-      <DependentUpon>201706011332133_Initial_Create.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706011814466_Initial_Create.resx">
+      <DependentUpon>201706011814466_Initial_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706011827199_CorrectedDepartmentProperties.resx">
+      <DependentUpon>201706011827199_CorrectedDepartmentProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

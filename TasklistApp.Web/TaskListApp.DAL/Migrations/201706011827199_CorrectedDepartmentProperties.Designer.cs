@@ -7,13 +7,13 @@ namespace TaskListApp.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Initial_Create : IMigrationMetadata
+    public sealed partial class CorrectedDepartmentProperties : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial_Create));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CorrectedDepartmentProperties));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706011332133_Initial_Create"; }
+            get { return "201706011827199_CorrectedDepartmentProperties"; }
         }
         
         string IMigrationMetadata.Source

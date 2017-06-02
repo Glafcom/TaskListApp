@@ -21,7 +21,7 @@ namespace TaskListApp.BLL.Services
         {
             var departments = GetItems();
 
-            if (string.IsNullOrEmpty(filter.Name))
+            if (!string.IsNullOrEmpty(filter.Name))
                 departments = departments.Where(d => d.Name.Contains(filter.Name));
 
             return departments;

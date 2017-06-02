@@ -15,7 +15,7 @@ namespace TaskListApp.Domain.Models
         }
 
         public string Name { get; set; }
-        public Guid HeadId { get; set; }
+        public Guid? HeadId { get; set; }
 
         public virtual User Head { get; set; }
         public virtual ICollection<User> Personal { get; set; }
