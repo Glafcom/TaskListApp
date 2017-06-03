@@ -52,6 +52,21 @@ namespace TaskListApp.BLL.Services
             return users;
         }
 
+        public IEnumerable<User> GetUsersByFilter(EmployeeFilter filter) {
+            var users = GetItems();
+
+            if (!string.IsNullOrEmpty(filter.Name))
+                users = users.Where(u => u.Name.Contains(filter.Name));
+
+            if (!string.IsNullOrEmpty(filter.Surname))
+                users = users.Where(u => u.Surname.Contains(filter.Surname));
+
+            if (filter.Department.HasValue)
+                users = users.Where(u => u.Department != null && (Guid)u.DepartmentId == (Guid)filter.Department);
+            
+            return users;
+        }
+
         public async Task SetRoleToUser(Guid userId, string role)
         {
             var roles = await _userManager.GetRolesAsync(userId);

@@ -216,13 +216,20 @@
     <Compile Include="Areas\Admin\Controllers\DepartmentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
-    <Compile Include="Areas\Admin\Models\DepartmentsViewModels\DepartmentBlankViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\DepartmentsViewModels\DepartmentCreateViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\DepartmentsViewModels\DepartmentEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentsViewModels\DepartmentsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentsViewModels\DepartmentViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\UsersViewModels\UserDetailViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\UsersViewModels\UserIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UsersViewModels\UsersViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UsersViewModels\UserViewModel.cs" />
+    <Compile Include="Areas\User\Controllers\EmployeesController.cs" />
     <Compile Include="Areas\User\Controllers\HomeController.cs" />
     <Compile Include="Areas\User\Controllers\TasksController.cs" />
+    <Compile Include="Areas\User\Models\EmployeesViewModels\EmployeesViewModel.cs" />
+    <Compile Include="Areas\User\Models\EmployeesViewModels\EmployeeViewModel.cs" />
+    <Compile Include="Areas\User\Models\EmployeesViewModels\TaslListEmployeeViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskBlankViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskChangeStatusViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskDetailViewModel.cs" />
@@ -274,6 +281,9 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\User\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Detail.cshtml" />
+    <Content Include="Areas\User\Views\Employees\Employee.cshtml" />
+    <Content Include="Areas\User\Views\Employees\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -306,6 +316,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\User\Views\Home\" />
+    <Folder Include="Areas\User\Views\Shared\TasksPartialViews\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

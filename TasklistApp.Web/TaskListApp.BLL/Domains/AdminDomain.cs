@@ -30,6 +30,16 @@ namespace TaskListApp.BLL.Domains
             return _userService.GetUsersByFilter(filter);
         }
 
+        public User GetUser(Guid userId) 
+        {
+            return _userService.GetItem(userId);
+        }
+
+        public void EditUser(User user) 
+        {
+            _userService.ChangeItem(user.Id, user);
+        }
+
         public void BlockUser(Guid userId)
         {
             _userService.BlockUser(userId);
@@ -78,6 +88,13 @@ namespace TaskListApp.BLL.Domains
         public void DeleteDepartment(Guid departmentId)
         {
             _departmentService.DeleteItem(departmentId);
+        }
+
+        public void DeleteEmployeeFromDepartment(Guid departmentId, Guid employeeId) 
+        {
+            var employee = _userService.GetItem(employeeId);
+            employee.DepartmentId = null;
+            _userService.ChangeItem(employeeId, employee);
         }
 
         #endregion

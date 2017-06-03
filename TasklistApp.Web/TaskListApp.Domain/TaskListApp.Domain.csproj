@@ -85,10 +85,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\EmployeeStatus.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Enums\ToDoTaskStatus.cs" />
     <Compile Include="Enums\UserStatus.cs" />
     <Compile Include="Filters\DepartmentFilter.cs" />
+    <Compile Include="Filters\EmployeeFilter.cs" />
     <Compile Include="Filters\UserFilter.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Department.cs" />

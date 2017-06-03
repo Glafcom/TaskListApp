@@ -1,5 +1,5 @@
 ﻿@using TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels;
-@model DepartmentBlankViewModel
+@model DepartmentEditViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -23,6 +23,50 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.HeadId)
+                    @Html.DropDownListFor(m => m.HeadId, Model.EmployeesList, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+            </div>
+        </div>
+
+        <div class="employees-container container">
+            @if (Model.Employees != null & Model.Employees.Count() > 0) 
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Role</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var employee in Model.Employees) 
+                        {
+                            <tr>
+                                <td>@employee.Name @employee.Surname</td>
+                                <td>@employee.Role.ToString()</td>
+                                <td>
+                                    <a href="@Url.Action("Detail", "Users", new { id = employee.Id, returnUrl = Request.Url.ToString() })" class="btn btn-default">Details</a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("DeleteEmployee", "Departments", new { id = employee.Id })" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else 
+            {
+                <p>There are no employees</p>
+            }
+        </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
     }

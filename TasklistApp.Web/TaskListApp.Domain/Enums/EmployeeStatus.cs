@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskListApp.Domain.Enums
+namespace TaskListApp.Domain.Enums 
 {
-    public enum UserType
+    public enum EmployeeStatus 
     {
-        Admin,
-        Boss,
-        Employee
+        Buisy,
+        Free,
+        Waiting
     }
 }

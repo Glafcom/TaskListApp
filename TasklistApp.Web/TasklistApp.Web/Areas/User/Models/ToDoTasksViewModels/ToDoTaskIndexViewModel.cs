@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
+using TaskListApp.Domain.Enums;
+using TaskListApp.Web.Areas.User.Models.EmployeesViewModels;
 
 namespace TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels
 {
@@ -10,5 +11,10 @@ namespace TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels
     {
         public IEnumerable<ToDoTaskViewModel> ActualOwnTasks { get; set; }
         public IEnumerable<ToDoTaskViewModel> ActualAssignedTasks { get; set; }
+
+        public IEnumerable<TaslListEmployeeViewModel> ActiveEmployees { get; set; }
+        public IEnumerable<TaslListEmployeeViewModel> AllEmployees { get; set; }
     }
+
+    
 }

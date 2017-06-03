@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TaskListApp.Domain.Enums;
 
 namespace TaskListApp.Web.Areas.Admin.Models.UsersViewModels
 {
@@ -12,8 +13,9 @@ namespace TaskListApp.Web.Areas.Admin.Models.UsersViewModels
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
-        public bool? IsBlocked { get; set; }
-        public string Role { get; set; }
+        public bool IsBlocked { get; set; }
+        public UserType Role { get; set; }
+        public Guid? DepartmentId { get; set; }
         public UserDepartmentViewModel Department { get; set; }
          
     }

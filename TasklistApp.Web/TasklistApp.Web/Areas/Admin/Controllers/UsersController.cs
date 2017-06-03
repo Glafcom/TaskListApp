@@ -33,6 +33,26 @@ namespace TasklistApp.Web.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult Detail(Guid id) 
+        {
+            var model = Mapper.Map<UserViewModel>(_adminDomain.GetUser(id));
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Save(UserViewModel model, string returnUrl) 
+        {
+            _adminDomain.EditUser(Mapper.Map<TaskListApp.Domain.Models.Identity.User>(model));
+            return RedirectToLocal(returnUrl);
+        }
+
+        [HttpGet]
+        public ActionResult Back(string returnUrl) 
+        {
+            return RedirectToLocal(returnUrl);
+        }
+
         [HttpPost]
         public void BlockUser(Guid userId)
         {
@@ -55,6 +75,14 @@ namespace TasklistApp.Web.Areas.Admin.Controllers
         public void ChangeUserRole(Guid userId, UserType role)
         {
             _adminDomain.ChangeUserRole(userId, role);
+        }
+
+
+        private ActionResult RedirectToLocal(string returnUrl) {
+            if (Url.IsLocalUrl(returnUrl)) {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

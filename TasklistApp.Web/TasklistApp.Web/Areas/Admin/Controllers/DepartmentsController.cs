@@ -44,11 +44,11 @@ namespace TasklistApp.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new DepartmentBlankViewModel());
+            return View(new DepartmentCreateViewModel());
         }
 
         [HttpPost]
-        public ActionResult Create(DepartmentBlankViewModel model)
+        public ActionResult Create(DepartmentCreateViewModel model)
         {
             _adminDomain.CreateDepartment(Mapper.Map<Department>(model));
             return RedirectToAction("Index");
@@ -58,11 +58,11 @@ namespace TasklistApp.Web.Areas.Admin.Controllers
         public ActionResult Edit(Guid id)
         {
             var department = _adminDomain.GetDepartment(id);
-            return View(Mapper.Map<DepartmentBlankViewModel>(department));
+            return View(Mapper.Map<DepartmentEditViewModel>(department));
         }
 
         [HttpPost]
-        public ActionResult Edit(DepartmentBlankViewModel model)
+        public ActionResult Edit(DepartmentEditViewModel model)
         {
             _adminDomain.ChangeDepartment(Mapper.Map<Department>(model));
             return RedirectToAction("Index");
@@ -73,6 +73,13 @@ namespace TasklistApp.Web.Areas.Admin.Controllers
         {
             _adminDomain.DeleteDepartment(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteEmployee(Guid departmentId, Guid employeeId) 
+        {
+            _adminDomain.DeleteEmployeeFromDepartment(departmentId, employeeId);
+            return RedirectToAction("Edit", new { id = departmentId });
         }
     }
 }

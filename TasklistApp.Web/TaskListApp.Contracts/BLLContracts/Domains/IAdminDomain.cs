@@ -15,6 +15,8 @@ namespace TaskListApp.Contracts.BLLContracts.Domains
         #region Users methods
 
         IEnumerable<User> GetUsersByFilter(UserFilter filter);
+        User GetUser(Guid userId);
+        void EditUser(User user);
         void BlockUser(Guid userId);
         void UnblockUser(Guid userId);
         void ChangeUserRole(Guid userId, UserType role);
@@ -29,8 +31,8 @@ namespace TaskListApp.Contracts.BLLContracts.Domains
         Department GetDepartment(Guid departmentId);
         void CreateDepartment(Department department);
         void ChangeDepartment(Department department);
-        void DeleteDepartment(Guid departmentId); 
-
+        void DeleteDepartment(Guid departmentId);
+        void DeleteEmployeeFromDepartment(Guid departmentId, Guid employeeId);
 
         #endregion
     }

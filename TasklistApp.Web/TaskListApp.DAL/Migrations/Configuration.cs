@@ -25,7 +25,6 @@ namespace TaskListApp.DAL.Migrations
                 r => r.Name,
                 new Role { Name = UserType.Admin.ToString() },
                 new Role { Name = UserType.Boss.ToString() },
-                new Role { Name = UserType.Head.ToString() },
                 new Role { Name = UserType.Employee.ToString() }
 
              );

@@ -1,5 +1,5 @@
 ﻿@using TaskListApp.Web.Areas.Admin.Models.UsersViewModels;
-@model UsersViewModel
+@model UserIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -26,13 +26,15 @@
             <tbody>
                 @foreach(var user in Model.Users) {
                     <tr>
-                        <td>@((user.IsBlocked.HasValue && (bool)user.IsBlocked) ? "Blocked" : "Active")</td>
+                        <td>@((user.IsBlocked) ? "Blocked" : "Active")</td>
                         <td>@user.UserName</td>
                         <td>@($"{user.Name} {user.Surname}")</td>
-                        <td>@user.Department</td>
-                        <td>@user.Role</td>
                         <td>
-                            @if (user.IsBlocked.HasValue && (bool)user.IsBlocked) {
+                            @Html.DropDownList("DepartmentId", Model.DepartmentsList, new { @class = "department-select-box" })
+                        </td>
+                        <td>@Html.DropDownList("Role", Model.RolesList, new { @class = "role-select-box" })</td>
+                        <td>
+                            @if (user.IsBlocked) {
                                 <button class="btn btn-default user-unblock-btn" data-user-id="@user.Id">Unblock</button>
                             }
                             else {
@@ -40,7 +42,7 @@
                             }
                         </td>
                         <td>
-                            @if (user.IsBlocked.HasValue && (bool)user.IsBlocked) 
+                            @if (user.IsBlocked) 
                             {
                                 <a href="@Url.Action("Delete", "Users", new { userId = user.Id })" class="btn btn-danger" >Delete</a>
                             }
