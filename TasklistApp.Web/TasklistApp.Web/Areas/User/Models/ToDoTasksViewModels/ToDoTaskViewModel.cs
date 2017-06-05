@@ -11,6 +11,7 @@ namespace TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels
         public Guid Id { get; set; }
         public ToDoTaskStatus Status { get; set; }
         public string Caption { get; set; }
+        public string Description { get; set; }
         public ToDoTaskUserViewModel Author { get; set; }
         public ToDoTaskUserViewModel Assignee { get; set; }
     }

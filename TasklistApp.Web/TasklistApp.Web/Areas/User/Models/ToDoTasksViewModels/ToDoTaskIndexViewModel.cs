@@ -12,8 +12,8 @@ namespace TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels
         public IEnumerable<ToDoTaskViewModel> ActualOwnTasks { get; set; }
         public IEnumerable<ToDoTaskViewModel> ActualAssignedTasks { get; set; }
 
-        public IEnumerable<TaslListEmployeeViewModel> ActiveEmployees { get; set; }
-        public IEnumerable<TaslListEmployeeViewModel> AllEmployees { get; set; }
+        public IEnumerable<TaskListEmployeeViewModel> ActiveEmployees { get; set; }
+        public IEnumerable<TaskListEmployeeViewModel> AllEmployees { get; set; }
     }
 
     

@@ -10,6 +10,7 @@ using TaskListApp.Domain.Models.Identity;
 using TaskListApp.Web.Areas.Account.Models.AccountViewModels;
 using TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels;
 using TaskListApp.Web.Areas.Admin.Models.UsersViewModels;
+using TaskListApp.Web.Areas.User.Models.EmployeesViewModels;
 using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
 
 namespace TasklistApp.Web.Mapping {
@@ -21,10 +22,12 @@ namespace TasklistApp.Web.Mapping {
 
             #region [ Department models ]
 
-            CreateMap<DepartmentViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
-            CreateMap<DepartmentBlankViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
-            CreateMap<Department, DepartmentViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
-            CreateMap<Department, DepartmentBlankViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels.DepartmentViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<DepartmentCreateViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<DepartmentEditViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<Department, TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels.DepartmentViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<Department, DepartmentCreateViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<Department, DepartmentEditViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<IndexDepartmentViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<Department, IndexDepartmentViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<UserDepartmentViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
@@ -36,8 +39,8 @@ namespace TasklistApp.Web.Mapping {
 
             CreateMap<UserViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<User, UserViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
-            CreateMap<EmployeeViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
-            CreateMap<User, EmployeeViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels.EmployeeViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<User, TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels.EmployeeViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<HeadViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<User, HeadViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<ToDoTaskUserViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
@@ -61,6 +64,17 @@ namespace TasklistApp.Web.Mapping {
             CreateMap<ToDoTask, ToDoTaskBlankViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
 
             #endregion //[ ToDoTasks models ]
+
+            #region [ Employees models ]
+
+            CreateMap<TaskListApp.Web.Areas.User.Models.EmployeesViewModels.EmployeeViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<User, TaskListApp.Web.Areas.User.Models.EmployeesViewModels.EmployeeViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<TaskListEmployeeViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<User, TaskListEmployeeViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<TaskListApp.Web.Areas.User.Models.EmployeesViewModels.DepartmentViewModel, Department>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<Department, TaskListApp.Web.Areas.User.Models.EmployeesViewModels.DepartmentViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+
+            #endregion // [ Employees models ]
 
             #endregion //[ User area ]
 

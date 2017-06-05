@@ -9,9 +9,39 @@
 <h2>Employees</h2>
 
 <div class="employees-container container">
+    @if (Model.IsLocalScope) 
+    {
+        <h2>@Model.Department.Name Department's Employees</h2>
+    }
+
     @if(Model.Employees != null && Model.Employees.Count() > 0)
     {
-
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Activity</th>
+                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Active tasks</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var employee in Model.Employees) 
+                {
+                    <tr>
+                        <td>@employee.IsOnline</td>
+                        <td>@employee.Status</td>
+                        <td>@employee.Name @employee.Surname</td>
+                        <td>@employee.TasksQty</td>
+                        <td>
+                            <a href="@Url.Action("Employee", "Employees", new { id = employee.Id})">Details</a>
+                        </td>
+                    </tr>
+                    
+                }
+            </tbody>
+        </table>
     }
     else 
     {

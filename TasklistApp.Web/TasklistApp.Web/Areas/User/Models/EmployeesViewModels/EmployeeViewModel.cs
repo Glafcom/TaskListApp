@@ -11,6 +11,9 @@ namespace TaskListApp.Web.Areas.User.Models.EmployeesViewModels {
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
+        public DepartmentViewModel Department { get; set; }
         
     }
+
+
 }

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using TaskListApp.Contracts.BLLContracts.Domains;
 using TaskListApp.Domain.Filters;
 using TaskListApp.Web.Areas.User.Models.EmployeesViewModels;
+using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
 
 namespace TasklistApp.Web.Areas.User.Controllers
 {
@@ -25,7 +26,7 @@ namespace TasklistApp.Web.Areas.User.Controllers
             var model = new EmployeesViewModel {
                 Filter = filter,
                 Employees = _userDomain.GetEmployeesByFilter(filter)
-                    .Select(e => Mapper.Map<EmployeeViewModel>(e))
+                    .Select(e => Mapper.Map<TaskListEmployeeViewModel>(e))
             };
             return View(model);
         }
@@ -39,7 +40,9 @@ namespace TasklistApp.Web.Areas.User.Controllers
 
         public ActionResult EmployeeTasks(Guid id) 
         {
-            
+            var model = _userDomain.GetActiveTasksOfUser(id)
+                .Select(t => Mapper.Map<ToDoTaskViewModel>(t));
+            return View(model);
         }
     }
 }

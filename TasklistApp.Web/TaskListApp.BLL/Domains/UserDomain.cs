@@ -93,6 +93,11 @@ namespace TaskListApp.BLL.Domains
             _toDoTaskService.StartToDoTaskExecuting(toDoTaskId);
         }
 
+        public IEnumerable<ToDoTask> GetActiveTasksOfUser(Guid userId) 
+        {
+            return _toDoTaskService.GetActualAssignedToDoTasks(userId);
+        }
+
         #endregion // [ ToDoTasks Methods ]
 
         #region [ Eployees Methods ]

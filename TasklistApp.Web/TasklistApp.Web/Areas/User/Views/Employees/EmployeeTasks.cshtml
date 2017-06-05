@@ -1,0 +1,44 @@
+﻿@using TaskListApp.Web.Areas.User.Models.EmployeesViewModels;
+@model EmployeeTasksViewModel
+
+@{
+    ViewBag.Title = "EmployeeTasks";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Employee.Name @(Model.Employee.Surname)'s tasks</h2>
+
+<div class="tasks-container container">
+    @if(Model.Tasks != null && Model.Tasks.Count() > 0) 
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Caption</th>
+                    <th>Author</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var task in Model.Tasks) 
+                {
+                    <tr>
+                        <td>@task.Status.ToString()</td>
+                        <td>@task.Caption</td>
+                        <td>@task.Author.Name @task.Author.Surname</td>
+                        <td>@task.Description</td>
+                        <td>
+                            <a href="@Url.Action("Task", "Tasks", new { id = task.Id })">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else 
+    {
+        <p>There are no tasks</p>
+    }
+</div>

@@ -228,8 +228,9 @@
     <Compile Include="Areas\User\Controllers\HomeController.cs" />
     <Compile Include="Areas\User\Controllers\TasksController.cs" />
     <Compile Include="Areas\User\Models\EmployeesViewModels\EmployeesViewModel.cs" />
+    <Compile Include="Areas\User\Models\EmployeesViewModels\EmployeeTasksViewModel.cs" />
     <Compile Include="Areas\User\Models\EmployeesViewModels\EmployeeViewModel.cs" />
-    <Compile Include="Areas\User\Models\EmployeesViewModels\TaslListEmployeeViewModel.cs" />
+    <Compile Include="Areas\User\Models\EmployeesViewModels\TaskListEmployeeViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskBlankViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskChangeStatusViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskDetailViewModel.cs" />
@@ -284,6 +285,7 @@
     <Content Include="Areas\Admin\Views\Users\Detail.cshtml" />
     <Content Include="Areas\User\Views\Employees\Employee.cshtml" />
     <Content Include="Areas\User\Views\Employees\Index.cshtml" />
+    <Content Include="Areas\User\Views\Employees\EmployeeTasks.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
