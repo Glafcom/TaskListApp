@@ -121,32 +121,73 @@
     </div>
 
     <div class="col-md-6 employees-list-container">
-        @if (Model.ActiveEmployees != null && Model.ActiveEmployees.Count() > 0) 
-        {
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Status</th>
-                        <th>Employee</th>
-                        <th>Active Tasks</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var employee in Model.ActiveEmployees) 
-                    {
-                        <tr>
-                            <td>@employee.Status</td>
-                            <td>@employee.Name @employee.Surname</td>
-                            <td>@employee.TasksQty</td>
-                        </tr>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#activeEmployees" aria-controls="activeEmployees" role="tab" data-toggle="tab">Active</a></li>
+            <li role="presentation"><a href="#allEmployees" aria-controls="allEmployees" role="tab" data-toggle="tab">All</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="activeEmployees">
+                <div class="active-employees-container">
+                    @if (Model.ActiveEmployees != null && Model.ActiveEmployees.Count() > 0) {
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Employee</th>
+                                    <th>Active Tasks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var employee in Model.ActiveEmployees) {
+                                    <tr>
+                                        <td>@employee.Status</td>
+                                        <td>@employee.Name @employee.Surname</td>
+                                        <td>@employee.TasksQty</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     }
-                </tbody>
-            </table>
-        }
-        else 
-        {
-            <p>There no employees awailable</p>
-        }
+                    else {
+                        <p>There no employees awailable</p>
+                    }
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="allEmployees">
+                <div class="all-employees-container">
+                    @if (Model.AllEmployees != null && Model.AllEmployees.Count() > 0) {
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Employee</th>
+                                    <th>Active Tasks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var employee in Model.AllEmployees) {
+                                    <tr>
+                                        <td>@employee.Status</td>
+                                        <td>@employee.Name @employee.Surname</td>
+                                        <td>@employee.TasksQty</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else {
+                        <p>There no employees awailable</p>
+                    }
+                </div>
+            </div>
+
+            </div>
+
+        
     </div>
 
 </div>

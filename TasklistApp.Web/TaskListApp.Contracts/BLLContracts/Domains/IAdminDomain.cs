@@ -27,6 +27,7 @@ namespace TaskListApp.Contracts.BLLContracts.Domains
 
         #region Departments methods
 
+        IEnumerable<Department> GetDepartments();
         IEnumerable<Department> GetDepartmentsByFilter(DepartmentFilter filter);
         Department GetDepartment(Guid departmentId);
         void CreateDepartment(Department department);

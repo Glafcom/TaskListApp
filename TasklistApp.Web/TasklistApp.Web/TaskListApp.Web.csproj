@@ -221,7 +221,6 @@
     <Compile Include="Areas\Admin\Models\DepartmentsViewModels\DepartmentsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DepartmentsViewModels\DepartmentViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UsersViewModels\UserDetailViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\UsersViewModels\UserIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UsersViewModels\UsersViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UsersViewModels\UserViewModel.cs" />
     <Compile Include="Areas\User\Controllers\EmployeesController.cs" />

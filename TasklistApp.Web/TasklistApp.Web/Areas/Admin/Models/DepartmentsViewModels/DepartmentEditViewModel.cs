@@ -15,7 +15,12 @@ namespace TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels {
         {
             get 
             {
-                return Employees.Select(e => new SelectListItem { Text = $"{e.Name} {e.Surname}", Value = e.Id.ToString() });
+                if (Employees != null) 
+                {
+                    return Employees.Select(e => new SelectListItem { Text = $"{e.Name} {e.Surname}", Value = e.Id.ToString() });
+                }
+
+                return new List<SelectListItem>();
             }
         }
 

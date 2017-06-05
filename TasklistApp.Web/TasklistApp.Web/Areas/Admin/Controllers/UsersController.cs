@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TaskListApp.Common.Helpers;
 using TaskListApp.Contracts.BLLContracts.Domains;
 using TaskListApp.Domain.Enums;
 using TaskListApp.Domain.Filters;
+using TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels;
 using TaskListApp.Web.Areas.Admin.Models.UsersViewModels;
 
 namespace TasklistApp.Web.Areas.Admin.Controllers
@@ -36,7 +38,9 @@ namespace TasklistApp.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Detail(Guid id) 
         {
-            var model = Mapper.Map<UserViewModel>(_adminDomain.GetUser(id));
+            var model = Mapper.Map<UserDetailViewModel>(_adminDomain.GetUser(id));
+            model.DepartmentsList = _adminDomain.GetDepartments()
+                .Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name });
             return View(model);
         }
 

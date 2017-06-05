@@ -65,6 +65,11 @@ namespace TaskListApp.BLL.Domains
 
         #region Department methods
 
+        public IEnumerable<Department> GetDepartments() 
+        {
+            return _departmentService.GetItems();
+        }
+
         public IEnumerable<Department> GetDepartmentsByFilter(DepartmentFilter filter)
         {
             return _departmentService.GetDeparmentsByFilter(filter);
