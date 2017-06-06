@@ -38,17 +38,17 @@
                             <a href="@Url.Action("Detail", "Users", new { id = user.Id })" class="btn btn-default">Details</a>
                         </td>
                         <td>
-                            @if (user.IsBlocked) {
+                            <div class="unblock-btn-container" hidden="@(!user.IsBlocked)">
                                 <button class="btn btn-default user-unblock-btn" data-user-id="@user.Id">Unblock</button>
-                            }
-                            else {
-                                <button class="btn btn-default user-block-btn" data-user-id="@user.Id">Block</button>
-                            }
+                            </div>
+                            <div class="block-btn-container" hidden="@(user.IsBlocked)">
+                                <button class="btn btn-default user-block-btn" data-user-id="@user.Id" hidden="@(user.IsBlocked)">Block</button>
+                            </div>
                         </td>
                         <td>
-                            @if (user.IsBlocked) {
-                                <a href="@Url.Action("Delete", "Users", new { userId = user.Id })" class="btn btn-danger">Delete</a>
-                            }
+                            <div class="delete-btn-container" hidden="@(!user.IsBlocked)">
+                                <a href="@Url.Action("Delete", "Users", new { userId = user.Id })" class="btn btn-danger" data-user-id="@user.Id">Delete</a>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -69,24 +69,38 @@
 
         $.ajax({
             method: "POST",
-            url: @Url.Action("UnblockUser", "Users"),
+            url: "@Url.Action("UnblockUser", "Users")",
             data: { userId : userId }
         }).complete(function(){
-
+            showBlockBtn(userId);
         });
     });
 
     $(".user-block-btn").click(function () {
         var userId = $(this).data("user-id");
+        console.log("block");
+
 
         $.ajax({
             method: "POST",
-            url: @Url.Action("BlockUser", "Users"),
+            url: "@Url.Action("BlockUser", "Users")",
             data: { userId : userId }
         }).complete(function(){
-
+            hideBlockBtn(userId);
         });
     });
+
+    function showBlockBtn(id){
+        $(".unblock-btn-container").find("[data-user-id='" + id + "']").parent().hide();
+        $(".block-btn-container").find("[data-user-id='" + id + "']").parent().show();
+        $(".delete-btn-container").find("[data-user-id='" + id + "']").parent().hide();
+    }
+
+    function hideBlockBtn(id){
+        $(".unblock-btn-container").find("[data-user-id='" + id +"']").parent().show();
+        $(".block-btn-container").find("[data-user-id='" + id + "']").parent().hide();
+        $(".delete-btn-container").find("[data-user-id='" + id + "']").parent().show();
+    }
 
 </script>
 
