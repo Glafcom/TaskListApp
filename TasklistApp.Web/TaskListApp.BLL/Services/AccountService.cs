@@ -11,6 +11,7 @@ using TaskListApp.Common.Models;
 using TaskListApp.Contracts.BLLContracts.Services;
 using TaskListApp.Contracts.DALContracts.Identity;
 using TaskListApp.Contracts.DtoModels;
+using TaskListApp.Domain.Enums;
 using TaskListApp.Domain.Models.Identity;
 
 namespace TaskListApp.BLL.Services {
@@ -32,6 +33,7 @@ namespace TaskListApp.BLL.Services {
                 if (user.Id == Guid.Empty)
                     user.Id = Guid.NewGuid();
 
+                user.UserType = UserType.Employee;
                 var result = await _userManager.CreateAsync(user, userDto.Password);
 
                 if (result.Errors.Count() > 0)

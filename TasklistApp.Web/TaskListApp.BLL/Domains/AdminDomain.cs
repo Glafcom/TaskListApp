@@ -52,7 +52,7 @@ namespace TaskListApp.BLL.Domains
 
         public void ChangeUserRole(Guid userId, UserType role)
         {
-            _userService.SetRoleToUser(userId, role.ToString());
+            _userService.SetRoleToUser(userId, role);
         }
 
         public void DeleteUser(Guid userId)

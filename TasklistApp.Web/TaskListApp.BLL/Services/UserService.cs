@@ -67,6 +67,13 @@ namespace TaskListApp.BLL.Services
             return users;
         }
 
+        public async Task SetRoleToUser(Guid userId, UserType userType) {
+            var user = GetItem(userId);
+            user.UserType = userType;
+            ChangeItem(userId, user);
+            await SetRoleToUser(userId, userType.ToString());
+        }
+
         public async Task SetRoleToUser(Guid userId, string role)
         {
             var roles = await _userManager.GetRolesAsync(userId);
