@@ -249,8 +249,14 @@
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTasksViewModel.cs" />
     <Compile Include="Areas\User\Models\ToDoTasksViewModels\ToDoTaskViewModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
-    <Compile Include="Behaviors\AuditBehavior.cs" />
+    <Compile Include="Behaviors\AuthBehavior.cs" />
+    <Compile Include="Behaviors\CachingBehavior.cs" />
+    <Compile Include="Behaviors\CompressionBehavior.cs" />
+    <Compile Include="Behaviors\EncryptionBehavior.cs" />
+    <Compile Include="Behaviors\FaultTransientBehavior.cs" />
     <Compile Include="Behaviors\LoggingBehavior.cs" />
+    <Compile Include="Behaviors\PerformanceMonitoringBehavior.cs" />
+    <Compile Include="Behaviors\ValidationBehavior.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

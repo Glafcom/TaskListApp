@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace TasklistApp.Web.Behaviors {
-    public class AuditBehavior : IInterceptionBehavior {
+    public class CompressionBehavior : IInterceptionBehavior {
         public IEnumerable<Type> GetRequiredInterfaces() {
             return Type.EmptyTypes;
         }

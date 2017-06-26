@@ -2,6 +2,7 @@ using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using TaskListApp.Infrastructure.ContainerExtensions;
+using Microsoft.Practices.Unity.InterceptionExtension;
 
 namespace TasklistApp.Web.App_Start
 {
@@ -33,6 +34,7 @@ namespace TasklistApp.Web.App_Start
         /// change the defaults), as Unity allows resolving a concrete type even if it was not previously registered.</remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
+            container.AddNewExtension<Interception>();
             container.AddNewExtension<TaskListAppContainerExtension>();
         }
     }
