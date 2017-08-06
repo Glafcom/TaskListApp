@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace TasklistApp.Web.Behaviors {
-    public class CachingBehavior : IInterceptionBehavior {
+    /*public class CachingBehavior : IInterceptionBehavior {
         public IMethodReturn Invoke(IMethodInvocation input, GetNextInterceptionBehaviorDelegate getNext) {
 
         }
@@ -15,7 +15,6 @@ namespace TasklistApp.Web.Behaviors {
             return true;
         }
 
-        private 
-
-    }
+        
+    }*/
 }

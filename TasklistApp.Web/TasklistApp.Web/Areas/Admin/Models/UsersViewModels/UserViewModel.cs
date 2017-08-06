@@ -14,7 +14,7 @@ namespace TaskListApp.Web.Areas.Admin.Models.UsersViewModels
         public string Surname { get; set; }
         public string Email { get; set; }
         public bool IsBlocked { get; set; }
-        public UserType? Role { get; set; }
+        public UserType Role { get; set; }
         public Guid? DepartmentId { get; set; }
         public UserDepartmentViewModel Department { get; set; }
          

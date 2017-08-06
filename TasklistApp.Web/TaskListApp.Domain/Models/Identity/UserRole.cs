@@ -9,5 +9,6 @@ namespace TaskListApp.Domain.Models.Identity
 {
     public class UserRole : IdentityUserRole<Guid>
     {
+        public virtual Role Role { get; set; }
     }
 }

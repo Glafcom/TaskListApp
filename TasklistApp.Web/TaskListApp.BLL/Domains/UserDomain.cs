@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskListApp.Contracts.BLLContracts.Domains;
 using TaskListApp.Contracts.BLLContracts.Services;
+using TaskListApp.Contracts.DtoModels;
 using TaskListApp.Domain.Filters;
 using TaskListApp.Domain.Models;
 using TaskListApp.Domain.Models.Identity;
@@ -102,19 +103,19 @@ namespace TaskListApp.BLL.Domains
 
         #region [ Eployees Methods ]
 
-        public IEnumerable<User> GetPersonalByDepartment(Guid departmentId)
+        public IEnumerable<UserDto> GetEmployeesByDepartment(Guid departmentId)
         {
-            return _userService.GetUsersByDepartment(departmentId);
+            return _userService.GetEmployeesByDepartment(departmentId);
         }
 
-        public IEnumerable<User> GetEmployeesByFilter(EmployeeFilter filter) 
+        public IEnumerable<UserDto> GetEmployeesByFilter(EmployeeFilter filter) 
         {
-            return _userService.GetUsersByFilter(filter);
+            return _userService.GetEmployeesByFilter(filter);
         }
 
-        public User GetEmployee(Guid employeeId) 
+        public UserDto GetEmployee(Guid employeeId) 
         {
-            return _userService.GetItem(employeeId);
+            return _userService.GetUser(employeeId);
         }
 
         #endregion // [ Employees Methods ]

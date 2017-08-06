@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskListApp.Contracts.BLLContracts.Domains;
 using TaskListApp.Contracts.BLLContracts.Services;
+using TaskListApp.Contracts.DtoModels;
 using TaskListApp.Domain.Enums;
 using TaskListApp.Domain.Filters;
 using TaskListApp.Domain.Models;
@@ -25,14 +26,22 @@ namespace TaskListApp.BLL.Domains
 
         #region Users methods
 
-        public IEnumerable<User> GetUsersByFilter(UserFilter filter)
+        public IEnumerable<UserDto> GetUsersByFilter(UserFilter filter)
         {
             return _userService.GetUsersByFilter(filter);
         }
 
-        public User GetUser(Guid userId) 
+        public IEnumerable<UserDto> GetEmployeesByFilter(UserFilter filter) {
+            return _userService.GetEmployeesByFilter(filter);
+        }
+
+        public IEnumerable<UserDto> GetEmployeesByFilter(EmployeeFilter filter) {
+            return _userService.GetEmployeesByFilter(filter);
+        }
+
+        public UserDto GetUser(Guid userId) 
         {
-            return _userService.GetItem(userId);
+            return _userService.GetUser(userId);
         }
 
         public void EditUser(User user) 

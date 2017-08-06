@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace TasklistApp.Web.Behaviors {
-    public class PerformanceMonitoringBehavior : IInterceptionBehavior {
+    /*public class PerformanceMonitoringBehavior : IInterceptionBehavior {
 
-    }
+    }*/
 }

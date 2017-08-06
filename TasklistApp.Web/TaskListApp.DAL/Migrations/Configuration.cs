@@ -16,7 +16,9 @@ namespace TaskListApp.DAL.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(TaskListAppDbContext context)
@@ -24,8 +26,8 @@ namespace TaskListApp.DAL.Migrations
             context.Roles.AddOrUpdate(
                 r => r.Name,
                 new Role { Name = UserType.Admin.ToString() },
-                new Role { Name = UserType.Boss.ToString() },
-                new Role { Name = UserType.Employee.ToString() }
+                new Role { Name = UserType.Employee.ToString() },
+                new Role { Name = UserType.Unassigned.ToString() }
 
              );
 

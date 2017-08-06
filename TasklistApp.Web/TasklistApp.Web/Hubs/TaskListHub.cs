@@ -10,10 +10,9 @@ using TaskListApp.Domain.Models;
 using Newtonsoft.Json;
 using TaskListApp.Contracts.BLLContracts.Services;
 using TaskListApp.Domain.Enums;
-using TaskListApp.Contracts.WebContracts;
 
 namespace TasklistApp.Web.Hubs {
-    public class TaskListHub : Hub, ITaskListHub 
+    public class TaskListHub : Hub
     {
         static List<ConnectedUser> Users = new List<ConnectedUser>();
 

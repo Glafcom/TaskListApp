@@ -5,6 +5,6 @@ using System.Linq;
 using System.Web;
 
 namespace TasklistApp.Web.Behaviors {
-    public class FaultTransientBehavior : IInterceptionBehavior {
-    }
+    /*public class FaultTransientBehavior : IInterceptionBehavior {
+    }*/
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskListApp.Contracts.DtoModels;
 using TaskListApp.Domain.Filters;
 using TaskListApp.Domain.Models;
 using TaskListApp.Domain.Models.Identity;
@@ -28,8 +29,8 @@ namespace TaskListApp.Contracts.BLLContracts.Domains
         void StartToDoTaskExecuting(Guid toDoTaskId);
         IEnumerable<ToDoTask> GetActiveTasksOfUser(Guid userId);
 
-        IEnumerable<User> GetPersonalByDepartment(Guid departmentId);
-        IEnumerable<User> GetEmployeesByFilter(EmployeeFilter filter);
-        User GetEmployee(Guid employeeId);
+        IEnumerable<UserDto> GetEmployeesByDepartment(Guid departmentId);
+        IEnumerable<UserDto> GetEmployeesByFilter(EmployeeFilter filter);
+        UserDto GetEmployee(Guid employeeId);
     }
 }

@@ -8,8 +8,8 @@ namespace TaskListApp.Domain.Enums
 {
     public enum UserType
     {
+        Unassigned,
         Admin,
-        Boss,
         Employee
     }
 }

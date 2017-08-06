@@ -18,6 +18,7 @@ namespace TasklistApp.Web.Areas.Admin.Controllers
     {
         protected IAdminDomain _adminDomain;
 
+
         public UsersController(IAdminDomain adminDomain)
         {
             _adminDomain = adminDomain;

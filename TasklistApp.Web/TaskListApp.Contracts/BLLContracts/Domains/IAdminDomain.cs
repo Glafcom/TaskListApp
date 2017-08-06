@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskListApp.Contracts.DtoModels;
 using TaskListApp.Domain.Enums;
 using TaskListApp.Domain.Filters;
 using TaskListApp.Domain.Models;
@@ -14,8 +15,10 @@ namespace TaskListApp.Contracts.BLLContracts.Domains
     {
         #region Users methods
 
-        IEnumerable<User> GetUsersByFilter(UserFilter filter);
-        User GetUser(Guid userId);
+        IEnumerable<UserDto> GetUsersByFilter(UserFilter filter);
+        IEnumerable<UserDto> GetEmployeesByFilter(UserFilter filter); 
+        IEnumerable<UserDto> GetEmployeesByFilter(EmployeeFilter filter);
+        UserDto GetUser(Guid userId);
         void EditUser(User user);
         void BlockUser(Guid userId);
         void UnblockUser(Guid userId);

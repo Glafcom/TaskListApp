@@ -32,14 +32,13 @@ namespace TaskListApp.BLL.Services {
                 user = Mapper.Map<User>(userDto);
                 if (user.Id == Guid.Empty)
                     user.Id = Guid.NewGuid();
-
-                user.UserType = UserType.Employee;
+                
                 var result = await _userManager.CreateAsync(user, userDto.Password);
 
                 if (result.Errors.Count() > 0)
                     return new OperationDetails(false, result.Errors.FirstOrDefault(), "");
 
-                await _userManager.AddToRoleAsync(user.Id, userDto.Role);
+                await _userManager.AddToRoleAsync(user.Id, UserType.Unassigned.ToString());
 
                 return new OperationDetails(true, "Registration successfully complited", "");
             }

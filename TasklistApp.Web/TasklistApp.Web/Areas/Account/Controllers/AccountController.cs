@@ -83,7 +83,7 @@ namespace TaskListApp.Web.Areas.Account.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model) {
             if (ModelState.IsValid) {
                 var modelDto = Mapper.Map<UserDto>(model);
-                modelDto.Role = UserType.Employee.ToString();
+                modelDto.Role = UserType.Unassigned.ToString();
                 OperationDetails result = await _accountService.Create(modelDto);
                 if (result.Succeeded)
                     return RedirectToAction("Login");

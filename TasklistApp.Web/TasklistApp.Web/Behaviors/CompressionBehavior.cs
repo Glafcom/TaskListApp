@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace TasklistApp.Web.Behaviors {
-    public class CompressionBehavior : IInterceptionBehavior {
+    /*public class CompressionBehavior : IInterceptionBehavior {
         public IEnumerable<Type> GetRequiredInterfaces() {
             return Type.EmptyTypes;
         }
@@ -23,5 +23,5 @@ namespace TasklistApp.Web.Behaviors {
 
             return result;
         }
-    }
+    }*/
 }

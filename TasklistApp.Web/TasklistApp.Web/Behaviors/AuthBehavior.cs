@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 namespace TasklistApp.Web.Behaviors {
-    public class AuthBehavior : IInterceptionBehavior {
+    /*public class AuthBehavior : IInterceptionBehavior {
         public IEnumerable<Type> GetRequiredInterfaces() {
             return Type.EmptyTypes;
         }
@@ -28,5 +28,5 @@ namespace TasklistApp.Web.Behaviors {
             
             return result;
         }
-    }
+    }*/
 }

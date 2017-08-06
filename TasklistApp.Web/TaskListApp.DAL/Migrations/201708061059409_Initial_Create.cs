@@ -13,10 +13,10 @@ namespace TaskListApp.DAL.Migrations
                     {
                         Id = c.Guid(nullable: false, identity: true),
                         Name = c.String(),
-                        HeadId = c.Guid(nullable: false),
+                        HeadId = c.Guid(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.HeadId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.HeadId)
                 .Index(t => t.HeadId);
             
             CreateTable(
@@ -29,7 +29,6 @@ namespace TaskListApp.DAL.Migrations
                         Surname = c.String(),
                         IsBlocked = c.Boolean(),
                         DepartmentId = c.Guid(),
-                        UserType = c.Int(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -82,8 +81,8 @@ namespace TaskListApp.DAL.Migrations
                         RoleId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
             
@@ -125,10 +124,10 @@ namespace TaskListApp.DAL.Migrations
         {
             DropForeignKey("dbo.ToDoTasks", "AuthorId", "dbo.AspNetUsers");
             DropForeignKey("dbo.ToDoTasks", "AssigneeId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUsers", "Department_Id", "dbo.Departments");
             DropForeignKey("dbo.Departments", "HeadId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUsers", "DepartmentId", "dbo.Departments");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
