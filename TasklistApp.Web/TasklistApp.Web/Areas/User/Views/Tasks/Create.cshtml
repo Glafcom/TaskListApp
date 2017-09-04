@@ -28,8 +28,14 @@
             <div class="col-md-10">
                 <div class="form-group">
                     @Html.LabelFor(m => m.StartDate)
-                    @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.StartDate)
+                    <div class='input-group date' id='start-date-picker' style="width: 280px;">
+                        @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.StartDate)
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -37,8 +43,13 @@
             <div class="col-md-10">
                 <div class="form-group">
                     @Html.LabelFor(m => m.FinishDate)
-                    @Html.TextBoxFor(m => m.FinishDate, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.FinishDate)
+                    <div class='input-group date' id='finish-date-picker' style="width: 280px;">
+                        @Html.TextBoxFor(m => m.FinishDate, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.FinishDate)
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,7 +67,7 @@
             <div class="col-md-10">
                 <div class="form-group">
                     @Html.LabelFor(m => m.DepartmentId)
-                    @Html.DropDownListFor(m => m.DepartmentId, new SelectList(ViewBag.DepartmentsList, "Value", "Text"), new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.DepartmentsList, "Value", "Text"), string.Empty, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.DepartmentId)
                 </div>
             </div>
@@ -66,7 +77,7 @@
             <div class="col-md-10">
                 <div class="form-group">
                     @Html.LabelFor(m => m.AssigneeId)
-                    @Html.DropDownListFor(m => m.AssigneeId, new SelectList(ViewBag.EmployeesList, "Value", "Text"), new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.AssigneeId, new SelectList(Model.EmployeesList, "Value", "Text"), string.Empty, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.AssigneeId)
                 </div>
             </div>
@@ -88,17 +99,25 @@
 
 <script>
 
+    $('#start-date-picker').datetimepicker();
+    $('#finish-date-picker').datetimepicker();
+
     $("select[name='DepartmentId']").change(function () {
+        var departmentId = $("#DepartmentId option:selected").val();
+        console.log(departmentId);
 
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: "@Url.Action("GetUsersList", "Tasks")",
             data: {
-                departmentId: userId
+                departmentId: departmentId
             }
         })
         .complete(function (data) {
-            
+            $("#AssigneeId").empty();
+            $.each(data.responseJSON, function (index, optionData) {
+                $("#AssigneeId").append("<option value='" + optionData.Value + "'>" + optionData.Text + "</option>");
+            });
         });
     })
 

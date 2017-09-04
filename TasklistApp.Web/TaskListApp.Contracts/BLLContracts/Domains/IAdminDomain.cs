@@ -19,7 +19,7 @@ namespace TaskListApp.Contracts.BLLContracts.Domains
         IEnumerable<UserDto> GetEmployeesByFilter(UserFilter filter); 
         IEnumerable<UserDto> GetEmployeesByFilter(EmployeeFilter filter);
         UserDto GetUser(Guid userId);
-        void EditUser(User user);
+        Task EditUser(UserDto user);
         void BlockUser(Guid userId);
         void UnblockUser(Guid userId);
         void ChangeUserRole(Guid userId, UserType role);

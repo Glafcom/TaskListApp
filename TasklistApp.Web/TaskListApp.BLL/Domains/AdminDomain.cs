@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,9 +45,10 @@ namespace TaskListApp.BLL.Domains
             return _userService.GetUser(userId);
         }
 
-        public void EditUser(User user) 
+        public async Task EditUser(UserDto user) 
         {
-            _userService.ChangeItem(user.Id, user);
+            _userService.UpdateUser(Mapper.Map<User>(user));
+            await _userService.SetRoleToUser(user.Id, user.Role);
         }
 
         public void BlockUser(Guid userId)

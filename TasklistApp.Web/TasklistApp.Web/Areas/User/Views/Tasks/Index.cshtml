@@ -1,11 +1,28 @@
 ﻿@using TaskListApp.Domain.Enums;
 @using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
+@using TaskListApp.Web.Areas.User.Models.EmployeesViewModels;
+@using Microsoft.AspNet.Identity
 @model ToDoTaskIndexViewModel
+
+<script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+<script src="~/signalr/hubs"></script>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
 }
+
+
+@helper EmployeeHelper(TaskListEmployeeViewModel employee) {
+    if (employee != null) {
+            <tr data-employee-id="@employee.Id">
+                <td>@employee.Status</td>
+                <td>@employee.Name @employee.Surname</td>
+                <td>@employee.TasksQty</td>
+            </tr>
+    }
+}
+
 
 <h2>Index</h2>
 
@@ -13,182 +30,184 @@
 
     <div class="task-list-container col-md-6">
 
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#assignedTasks" aria-controls="assignedTasks" role="tab" data-toggle="tab">Assigned tasks</a></li>
-            <li role="presentation"><a href="#ownTasks" aria-controls="ownTasks" role="tab" data-toggle="tab">Own tasks</a></li>
-        </ul>
+        
+        <div class="row">
+            <a id="assigned-tasks-btn" class="btn btn-default">Assigned tasks</a>
+            <a id="own-tasks-btn" class="btn btn-default">Own Tasks</a>
+        </div>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="assignedTasks">
-                <div class="assigned-tasks-container">
+        <div class="tasks-list-container container">
+            <div class="assigned-tasks-container">
 
-                    @if (Model.ActualAssignedTasks != null && Model.ActualAssignedTasks.Count() > 0)
-                    {
-                        <table class="table table-bordered">
-                            <thead>
+                @if (Model.ActualAssignedTasks != null && Model.ActualAssignedTasks.Count() > 0) {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Author</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var task in Model.ActualAssignedTasks) {
                                 <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Author</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach(var task in Model.ActualAssignedTasks)
-                                {
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" class="chkTaskComplete" data-task-id="@task.Id" checked="@(task.Status == ToDoTaskStatus.Done)" />
-                                        </td>
-                                        <td>@task.Caption</td>
-                                        <td>@(task.Author != null ? $"{task.Author.Name} {task.Author.Surname}" : string.Empty)</td>
-                                        <td>
-                                            @if (task.Status != ToDoTaskStatus.Done && task.Status != ToDoTaskStatus.Rejected)
-                                            {
-                                                if (task.Status == ToDoTaskStatus.InProgress)
-                                                {
-                                                    <a href="#" class="btn btn-info task-pause-btn" data-task-id="@task.Id">Pause</a>
-                                                }
-                                                else
-                                                {
-                                                    <a href="#" class="btn btn-info task-start-btn" data-task-id="@task.Id">Start</a>
-                                                }
+                                    <td>
+                                        <input type="checkbox" class="chkTaskComplete" data-task-id="@task.Id" checked="@(task.Status == ToDoTaskStatus.Done)" />
+                                    </td>
+                                    <td>@task.Caption</td>
+                                    <td>@(task.Author != null ? $"{task.Author.Name} {task.Author.Surname}" : string.Empty)</td>
+                                    <td>
+                                        @if (task.Status != ToDoTaskStatus.Done && task.Status != ToDoTaskStatus.Rejected) {
+                                            if (task.Status == ToDoTaskStatus.InProgress) {
+                                                <a href="#" class="btn btn-info task-pause-btn" data-task-id="@task.Id">Pause</a>
                                             }
-                                            
-                                        </td>
-                                        <td>
-                                            <a href="@Url.Action("Task", "Tasks", new { id = task.Id})" class="btn btn-default">Details</a>
-                                        </td>
-                                        <td>
-                                            <a href="@Url.Action("RejectTask", "Tasks", new { id = task.Id})" class="btn btn-danger">Reject</a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    }
-                    else
-                    {
-                        <p>There are no active tasks</p>
-                    }
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="ownTasks">
-                <div class="own-tasks-container">
+                                            else {
+                                                <a href="#" class="btn btn-info task-start-btn" data-task-id="@task.Id">Start</a>
+                                            }
+                                        }
 
-                    @if (Model.ActualOwnTasks != null && Model.ActualOwnTasks.Count() > 0)
-                    {
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Status</th>
-                                    <th>Name</th>
-                                    <th>Assignee</th>
-                                    <th></th>                                    
-                                    <th></th>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Task", "Tasks", new { id = task.Id})" class="btn btn-default">Details</a>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("RejectTask", "Tasks", new { id = task.Id})" class="btn btn-danger">Reject</a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var task in Model.ActualOwnTasks)
-                                {
-                                    <tr>
-                                        <td>@task.Status.ToString()</td>
-                                        <td>@task.Caption</td>
-                                        <td>@(task.Assignee != null ? $"{task.Assignee.Name} {task.Assignee.Surname}" : string.Empty)</td>
-                                        <td>
-                                            <a href="@Url.Action("Task", "Tasks", new { id = task.Id})" class="btn btn-default">Details</a>
-                                        </td>                                        
-                                        <td>
-                                            <a href="@Url.Action("RejectTask", "Tasks", new { id = task.Id})" class="btn btn-danger">Reject</a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    }
-                    else
-                    {
-                        <p>There are no active tasks</p>
-                    }
-                </div>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else {
+                    <p>There are no active tasks</p>
+                }
             </div>
+
+            <div class="own-tasks-container">
+
+                @if (Model.ActualOwnTasks != null && Model.ActualOwnTasks.Count() > 0) {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Name</th>
+                                <th>Assignee</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var task in Model.ActualOwnTasks) {
+                                <tr>
+                                    <td>@task.Status.ToString()</td>
+                                    <td>@task.Caption</td>
+                                    <td>@(task.Assignee != null ? $"{task.Assignee.Name} {task.Assignee.Surname}" : string.Empty)</td>
+                                    <td>
+                                        <a href="@Url.Action("Task", "Tasks", new { id = task.Id})" class="btn btn-default">Details</a>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("RejectTask", "Tasks", new { id = task.Id})" class="btn btn-danger">Reject</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else {
+                    <p>There are no active tasks</p>
+                }
+            </div>
+
         </div>
 
     </div>
 
     <div class="col-md-6 employees-list-container">
 
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#activeEmployees" aria-controls="activeEmployees" role="tab" data-toggle="tab">Active</a></li>
-            <li role="presentation"><a href="#allEmployees" aria-controls="allEmployees" role="tab" data-toggle="tab">All</a></li>
-        </ul>
 
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="activeEmployees">
-                <div class="active-employees-container">
-                    @if (Model.ActiveEmployees != null && Model.ActiveEmployees.Count() > 0) {
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Status</th>
-                                    <th>Employee</th>
-                                    <th>Active Tasks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var employee in Model.ActiveEmployees) {
-                                    <tr>
-                                        <td>@employee.Status</td>
-                                        <td>@employee.Name @employee.Surname</td>
-                                        <td>@employee.TasksQty</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    }
-                    else {
-                        <p>There no employees awailable</p>
-                    }
-                </div>
+        <div class="row">
+            <a id="active-employees-btn" class="btn btn-default">Active</a>
+            <a id="all-employees-btn" class="btn btn-default">All</a>
+        </div>
+
+        <div class="employees-list-container container">
+
+            <div class="active-employees-container">
+                @if (Model.ActiveEmployees != null && Model.ActiveEmployees.Count() > 0) {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Employee</th>
+                                <th>Active Tasks</th>
+                            </tr>
+                        </thead>
+                        <tbody class="active-employees-rows-container">
+                            @foreach (var employee in Model.ActiveEmployees) {
+                                @EmployeeHelper(employee)
+                            }
+                        </tbody>
+                    </table>
+                }
+                else {
+                    <p>There no employees awailable</p>
+                }
             </div>
 
-            <div role="tabpanel" class="tab-pane" id="allEmployees">
-                <div class="all-employees-container">
-                    @if (Model.AllEmployees != null && Model.AllEmployees.Count() > 0) {
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Status</th>
-                                    <th>Employee</th>
-                                    <th>Active Tasks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var employee in Model.AllEmployees) {
-                                    <tr>
-                                        <td>@employee.Status</td>
-                                        <td>@employee.Name @employee.Surname</td>
-                                        <td>@employee.TasksQty</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    }
-                    else {
-                        <p>There no employees awailable</p>
-                    }
-                </div>
+            <div class="all-employees-container">
+                @if (Model.AllEmployees != null && Model.AllEmployees.Count() > 0) {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Employee</th>
+                                <th>Active Tasks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var employee in Model.AllEmployees) {
+                                @EmployeeHelper(employee)
+                            }
+                        </tbody>
+                    </table>
+                }
+                else {
+                    <p>There no employees awailable</p>
+                }
             </div>
 
-            </div>
+        </div>
 
-        
     </div>
 
 </div>
+
+
+
+<script>
+
+    $(function () {
+
+
+        var taskListApp = $.connection.taskListHub;
+        console.log(taskListApp);
+
+        // Добавляем нового пользователя
+        taskListApp.client.updateActiveUsers = function (userNames) {
+            console.log(userNames);
+        }
+
+        $.connection.hub.start();
+
+    });
+
+   
+
+    
+
+</script>
+
 

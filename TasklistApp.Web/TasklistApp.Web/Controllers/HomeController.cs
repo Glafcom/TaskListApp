@@ -14,7 +14,7 @@ namespace TaskListApp.Web.Controllers
         {
             if (Roles.IsUserInRole("Admin"))
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
-            if (Roles.IsUserInRole("Boss") || Roles.IsUserInRole("Head") || Roles.IsUserInRole("Employee"))
+            if (Roles.IsUserInRole("Employee"))
                 return RedirectToAction("Index", "Tasks", new { area = "User" });
 
             return RedirectToAction("Login", "Account", new { area = "Account" });

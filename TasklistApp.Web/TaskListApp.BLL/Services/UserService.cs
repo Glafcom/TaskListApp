@@ -20,12 +20,14 @@ namespace TaskListApp.BLL.Services
     {
         protected readonly IApplicationUserManager _userManager;
         protected readonly IGenericRepository<User> _userRepository;
+        protected readonly IGenericRepository<Role> _roleRepository;
 
-        public UserService(IGenericRepository<User> itemRepository, IApplicationUserManager userManager, IGenericRepository<User> userRepository)
+        public UserService(IGenericRepository<User> itemRepository, IApplicationUserManager userManager, IGenericRepository<User> userRepository, IGenericRepository<Role> roleRepository)
             : base(itemRepository)
         {
             _userManager = userManager;
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
         }
 
         public UserDto GetUser(Guid userId) {
@@ -39,15 +41,14 @@ namespace TaskListApp.BLL.Services
                 Role = (user.Roles.FirstOrDefault() != null && user.Roles.ToList().FirstOrDefault().Role != null)
                         ? user.Roles.ToList().FirstOrDefault().Role.Name
                         : string.Empty,
+                Department = user.Department,
                 DepartmentId = user.DepartmentId,
                 Email = user.Email
             };
         }
 
         public IEnumerable<UserDto> GetUsers() {
-            var test = _userRepository.Get();
-            var test2 = test.FirstOrDefault();
-
+            
             var users = _userRepository.Get()
                 .Select(u => new UserDto {
                     Id = u.Id,
@@ -58,6 +59,7 @@ namespace TaskListApp.BLL.Services
                     Role = (u.Roles.FirstOrDefault() != null && u.Roles.FirstOrDefault().Role != null)
                         ? u.Roles.ToList().FirstOrDefault().Role.Name
                         : string.Empty,
+                    Department = u.Department,
                     DepartmentId = u.DepartmentId,
                     Email = u.Email
                 });
@@ -79,7 +81,7 @@ namespace TaskListApp.BLL.Services
                 users = users.Where(u => u.Surname.Contains(filter.Surname));
 
             if (filter.Department.HasValue)
-                users = users.Where(u => u.DepartmentId != null && u.DepartmentId == filter.Department);
+                users = users.Where(u => u.Department != null && u.Department.Id == filter.Department);
 
             if (filter.Role.HasValue)
                 users = users.Where(u => _userManager.IsInRoleAsync(u.Id,filter.Role.ToString()).Result);
@@ -93,6 +95,24 @@ namespace TaskListApp.BLL.Services
             }
 
             return users;
+        }
+
+        public IEnumerable<Role> GetUserRoles(Guid userId) {
+            return _roleRepository.Get().Where(r => r.Users.Select(u => u.UserId).Contains(userId));
+        }
+
+        public void UpdateUser(User user) {
+            var curUser = _userRepository.GetByID(user.Id);
+            if (curUser != null) {
+                curUser.IsBlocked = user.IsBlocked;
+                curUser.Name = user.Name;
+                curUser.Surname = user.Surname;
+                curUser.UserName = user.UserName;
+                curUser.DepartmentId = user.DepartmentId;
+                curUser.Email = user.Email;
+
+                _userRepository.Update(curUser);                
+            }
         }
 
         public IEnumerable<UserDto> GetEmployees() {
@@ -113,13 +133,13 @@ namespace TaskListApp.BLL.Services
                 employees = employees.Where(u => u.Surname.Contains(filter.Surname));
 
             if (filter.Department.HasValue)
-                employees = employees.Where(u => u.DepartmentId != null && u.DepartmentId == filter.Department);
+                employees = employees.Where(u => u.Department != null && u.Department.Id == filter.Department);
             
             return employees;
         }
 
         public IEnumerable<UserDto> GetEmployeesByDepartment(Guid departmentId) {
-            return GetEmployees().Where(e => e.DepartmentId.HasValue && e.DepartmentId == departmentId);
+            return GetEmployees().Where(e => e.Department != null && e.Department.Id == departmentId);
         }
 
         public async Task SetRoleToUser(Guid userId, UserType userType) {

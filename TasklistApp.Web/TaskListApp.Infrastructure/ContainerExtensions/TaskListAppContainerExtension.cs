@@ -60,6 +60,7 @@ namespace TaskListApp.Infrastructure.ContainerExtensions {
             Container.RegisterType<IGenericRepository<User>, GenericRepository<User>>(new PerRequestLifetimeManager());
             Container.RegisterType<IGenericRepository<Department>, GenericRepository<Department>>(new PerRequestLifetimeManager());
             Container.RegisterType<IGenericRepository<ToDoTask>, GenericRepository<ToDoTask>>(new PerRequestLifetimeManager());
+            Container.RegisterType<IGenericRepository<Role>, GenericRepository<Role>>(new PerRequestLifetimeManager());
 
             #endregion // [ Repositories ]
 

@@ -29,8 +29,11 @@ namespace TaskListApp.Contracts.BLLContracts.Domains
         void StartToDoTaskExecuting(Guid toDoTaskId);
         IEnumerable<ToDoTask> GetActiveTasksOfUser(Guid userId);
 
+        IEnumerable<UserDto> GetAllEmployees();
         IEnumerable<UserDto> GetEmployeesByDepartment(Guid departmentId);
         IEnumerable<UserDto> GetEmployeesByFilter(EmployeeFilter filter);
         UserDto GetEmployee(Guid employeeId);
+
+        IEnumerable<Department> GetDepartments();
     }
 }

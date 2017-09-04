@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "login-form" })) {
                 @Html.AntiForgeryToken()
                 <h4>Use a local account to log in.</h4>
                 <hr />
@@ -36,6 +36,7 @@
                         </div>
                     </div>
                 </div>
+                @Html.HiddenFor(m => m.ConnectionId)
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Log in" class="btn btn-default" />
@@ -51,4 +52,17 @@
         </section>
     </div>
 </div>
+
+<script>
+
+    $(function () {
+        $.connection.hub.start().done(function () {
+
+            var connectionId = $.connection.hub.id;
+            $('#ConnectionId').val(connectionId);
+        });
+    });
+
+</script>
+
 

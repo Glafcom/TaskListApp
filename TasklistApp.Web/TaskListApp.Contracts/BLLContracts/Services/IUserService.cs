@@ -15,11 +15,13 @@ namespace TaskListApp.Contracts.BLLContracts.Services
         UserDto GetUser(Guid userId);
         IEnumerable<UserDto> GetUsers();
         IEnumerable<UserDto> GetUsersByFilter(UserFilter filter);
+        IEnumerable<Role> GetUserRoles(Guid userId);
         Task SetRoleToUser(Guid userId, string role);
         Task SetRoleToUser(Guid userId, UserType userType);
         void BlockUser(Guid userId);
         void UnblockUser(Guid userId);
         bool DeleteUser(Guid userId);
+        void UpdateUser(User user);
 
         IEnumerable<UserDto> GetEmployees();
         IEnumerable<UserDto> GetEmployeesByFilter(UserFilter filter);

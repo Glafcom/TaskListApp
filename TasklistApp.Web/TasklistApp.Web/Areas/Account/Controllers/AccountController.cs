@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using TasklistApp.Web.Hubs;
 using TaskListApp.Common.Helpers;
 using TaskListApp.Common.Models;
 using TaskListApp.Contracts.BLLContracts.Services;
@@ -56,8 +57,11 @@ namespace TaskListApp.Web.Areas.Account.Controllers
                 if (claim != null) {
                     var result = await _accountService.SignIn(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
                                         
-                    if (result == SignInStatus.Success)
+                    if (result == SignInStatus.Success) {
+                        TaskListHub.Connect(model.ConnectionId, model.UserName);
                         return RedirectToLocal(returnUrl);
+                    }
+                        
                 }
 
                 ModelState.AddModelError("", "Invalid login attempt.");

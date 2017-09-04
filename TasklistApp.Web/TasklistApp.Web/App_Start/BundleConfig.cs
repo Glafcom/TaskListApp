@@ -23,9 +23,20 @@ namespace TaskListApp.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datetimepicker").Include(
+                      "~/Scripts/moment.js",
+                      "~/Scripts/bootstrap-datetimepicker.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/datetimepicker").Include(
+                      "~/bundles/datetimepicker.css"));
+
+            bundles.Add(new ScriptBundle("~/Content/signalR").Include(
+                      "~/Scripts/jquery.signalR-2.2.2.min.js"));
+
         }
     }
 }

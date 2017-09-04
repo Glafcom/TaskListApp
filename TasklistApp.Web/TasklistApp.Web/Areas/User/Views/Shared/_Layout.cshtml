@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/datetimepicker")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/datetimepicker")
 
 </head>
 <body>
@@ -22,6 +24,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Tasks", "Index", "Tasks")</li>
+                    <li>@Html.ActionLink("Create Task", "Create", "Tasks")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

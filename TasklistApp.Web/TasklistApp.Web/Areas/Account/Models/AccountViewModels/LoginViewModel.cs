@@ -17,5 +17,7 @@ namespace TaskListApp.Web.Areas.Account.Models.AccountViewModels {
 
         [Display(Name = "Remember me")]
         public bool RememberMe { get; set; }
+
+        public string ConnectionId { get; set; }
     }
 }

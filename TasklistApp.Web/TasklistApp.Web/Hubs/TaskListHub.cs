@@ -10,24 +10,22 @@ using TaskListApp.Domain.Models;
 using Newtonsoft.Json;
 using TaskListApp.Contracts.BLLContracts.Services;
 using TaskListApp.Domain.Enums;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace TasklistApp.Web.Hubs {
     public class TaskListHub : Hub
     {
         static List<ConnectedUser> Users = new List<ConnectedUser>();
-
+        
         //Connecting of user
-        public void Connect(string userName) 
+        public static void Connect(string connectionId, string userName) 
         {
-            var id = Context.ConnectionId;
+
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<TaskListHub>();
             
-            if (!Users.Any(u => u.ConnectionId == id)) 
-            {
-                Users.Add(new ConnectedUser { ConnectionId = id, UserName = userName });
-
-                Clients.Caller.onConnected(id, userName, Users);
-
-                Clients.AllExcept(id).onNewUserConnected(id, userName);
+            if (!Users.Any(u => u.UserName == userName)) {
+                Users.Add(new ConnectedUser { ConnectionId = connectionId, UserName = userName });
+                hubContext.Clients.AllExcept(connectionId).updateActiveUsers(Users.Select(u => u.UserName));
             }
         }
 
@@ -39,32 +37,34 @@ namespace TasklistApp.Web.Hubs {
             if (item != null) 
             {
                 Users.Remove(item);
-                Clients.All.onUserDisconnected(id, item.UserName);
             }
 
             return base.OnDisconnected(stopCalled);
         }
 
-        public void CreateToDoTask(ToDoTask task) {
+        public static void CreateToDoTask(ToDoTask task) {
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<TaskListHub>();
             var assignee = Users.FirstOrDefault(u => u.UserName == task.Assignee.UserName);
-            Clients.Client(assignee.ConnectionId).onTaskCreated(JsonConvert.SerializeObject(task));
+            hubContext.Clients.Client(assignee.ConnectionId).onTaskCreated(JsonConvert.SerializeObject(task));
         }
 
-        public void EditToDoTask(ToDoTask task) {
+        public static void EditToDoTask(ToDoTask task) {
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<TaskListHub>();
             var assignee = Users.FirstOrDefault(u => u.UserName == task.Assignee.UserName);
-            Clients.Client(assignee.ConnectionId).onTaskEdited(JsonConvert.SerializeObject(task));
+            hubContext.Clients.Client(assignee.ConnectionId).onTaskEdited(JsonConvert.SerializeObject(task));
         }
 
-        public void DeleteToDoTask(Guid taskId, string userName) {
+        public static void DeleteToDoTask(Guid taskId, string userName) {
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<TaskListHub>();
             var assignee = Users.FirstOrDefault(u => u.UserName == userName);
-            Clients.Client(assignee.ConnectionId).onTaskDelited(taskId);
+            hubContext.Clients.Client(assignee.ConnectionId).onTaskDelited(taskId);
         }
 
-        public void ChangeToDoTaskStatus(Guid taskId, ToDoTaskStatus status, string info, string userName) {
+        public static void ChangeToDoTaskStatus(Guid taskId, ToDoTaskStatus status, string info, string userName) {
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<TaskListHub>();
             var assignee = Users.FirstOrDefault(u => u.UserName == userName);
-            Clients.Client(assignee.ConnectionId).onTaskStatusChanged(taskId, status, info); 
+            hubContext.Clients.Client(assignee.ConnectionId).onTaskStatusChanged(taskId, status, info); 
         }
-
     }
 
     public class ConnectedUser {

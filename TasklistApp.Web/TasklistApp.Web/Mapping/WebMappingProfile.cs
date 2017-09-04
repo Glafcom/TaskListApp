@@ -47,6 +47,10 @@ namespace TasklistApp.Web.Mapping {
             CreateMap<User, ToDoTaskUserViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<UserDetailViewModel, User>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
             CreateMap<User, UserDetailViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<UserDto, UserViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<UserViewModel, UserDto>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<UserDetailViewModel, UserDto>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
+            CreateMap<UserDto, UserDetailViewModel>().IgnoreAllNonExisting().ReverseMap().IgnoreAllNonExisting();
 
             #endregion //[ Users models ]
 

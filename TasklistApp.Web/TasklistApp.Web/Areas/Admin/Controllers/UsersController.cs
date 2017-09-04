@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TaskListApp.Common.Helpers;
 using TaskListApp.Contracts.BLLContracts.Domains;
+using TaskListApp.Contracts.DtoModels;
 using TaskListApp.Domain.Enums;
 using TaskListApp.Domain.Filters;
 using TaskListApp.Web.Areas.Admin.Models.DepartmentsViewModels;
@@ -46,9 +48,9 @@ namespace TasklistApp.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(UserViewModel model, string returnUrl) 
+        public async Task<ActionResult> Save(UserViewModel model, string returnUrl) 
         {
-            _adminDomain.EditUser(Mapper.Map<TaskListApp.Domain.Models.Identity.User>(model));
+            await _adminDomain.EditUser(Mapper.Map<UserDto>(model));
             return RedirectToLocal(returnUrl);
         }
 

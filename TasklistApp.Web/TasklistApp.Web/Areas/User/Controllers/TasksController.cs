@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TasklistApp.Web.Hubs;
 using TaskListApp.Contracts.BLLContracts.Domains;
 using TaskListApp.Domain.Enums;
 using TaskListApp.Domain.Models;
+using TaskListApp.Web.Areas.User.Models.EmployeesViewModels;
 using TaskListApp.Web.Areas.User.Models.ToDoTasksViewModels;
 
 namespace TaskListApp.Web.Areas.User.Controllers
@@ -27,7 +29,11 @@ namespace TaskListApp.Web.Areas.User.Controllers
             var model = new ToDoTaskIndexViewModel
             {
                 ActualOwnTasks = _userDomain.GetActualOwnToDoTasks().Select(aot => Mapper.Map<ToDoTaskViewModel>(aot)),
-                ActualAssignedTasks = _userDomain.GetActualAssignedToDoTasks().Select(aot => Mapper.Map<ToDoTaskViewModel>(aot))
+                ActualAssignedTasks = _userDomain.GetActualAssignedToDoTasks().Select(aot => Mapper.Map<ToDoTaskViewModel>(aot)),
+                AllEmployees = _userDomain.GetAllEmployees().Select(e => new TaskListEmployeeViewModel {
+                    
+                })
+
             };
             return View(model);
         }
@@ -42,7 +48,11 @@ namespace TaskListApp.Web.Areas.User.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new ToDoTaskBlankViewModel());
+            var model = new ToDoTaskBlankViewModel();
+            model.DepartmentsList = _userDomain.GetDepartments()
+                .Select(d => new SelectListItem { Value = d.Id.ToString(), Text = d.Name }).ToList();
+            model.EmployeesList = new List<SelectListItem>();
+            return View(model);
         }
 
         [HttpPost]
@@ -50,6 +60,7 @@ namespace TaskListApp.Web.Areas.User.Controllers
         {
             var toDoTask = Mapper.Map<ToDoTask>(model);
             _userDomain.CreateToDoTask(toDoTask);
+            TaskListHub.CreateToDoTask(toDoTask);
             return RedirectToAction("Index");
 
         }
@@ -67,13 +78,16 @@ namespace TaskListApp.Web.Areas.User.Controllers
         {
             var toDoTask = Mapper.Map<ToDoTask>(model);
             _userDomain.EditToDoTask(toDoTask);
+            TaskListHub.EditToDoTask(toDoTask);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult Delete(Guid id)
         {
+            var toDoTask = _userDomain.GetToDoTask(id);
             _userDomain.DeleteToDoTask(id);
+            TaskListHub.DeleteToDoTask(id, toDoTask.Assignee.UserName);
             return RedirectToAction("Index");
         }
 
@@ -92,6 +106,8 @@ namespace TaskListApp.Web.Areas.User.Controllers
         [HttpPost]
         public ActionResult ChangeTaskStatus(ToDoTaskChangeStatusViewModel model)
         {
+            var toDoTask = _userDomain.GetToDoTask(model.Id);
+
             switch (model.Status)
             {
                 case ToDoTaskStatus.Done:
@@ -101,6 +117,7 @@ namespace TaskListApp.Web.Areas.User.Controllers
                     _userDomain.RejectToDoTask(model.Id, model.Information);
                     break;
             }
+            TaskListHub.ChangeToDoTaskStatus(model.Id, model.Status, model.Information, toDoTask.Assignee.UserName);
 
             return RedirectToAction("Index");
         }
@@ -117,10 +134,27 @@ namespace TaskListApp.Web.Areas.User.Controllers
             _userDomain.StartToDoTaskExecuting(id);
         }
 
-        /*[HttpPost]
+        [HttpGet]
         public JsonResult GetUsersList(Guid departmentId)
         {
-            var usersList = _userDomain.GetPersonalByDepartment(departmentId);
-        }*/
+            List<SelectListItem> result;
+            result = _userDomain.GetEmployeesByDepartment(departmentId)
+                .Select(e => new SelectListItem { Text = $"{e.Name} {e.Surname}", Value = e.Id.ToString()}).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetActiveUsersList(string[] usersNames) {
+            var employees = _userDomain.GetAllEmployees().Where(e => usersNames.Contains(e.UserName)).Select(e => new TaskListEmployeeViewModel {
+                Id = e.Id,
+                Name = e.Name,
+                Surname = e.Surname,
+                Email = e.Email,
+                IsOnline = true,
+                Department = Mapper.Map<DepartmentViewModel>(e.Department),
+                Status = 
+            });
+
+        }
     }
 }
